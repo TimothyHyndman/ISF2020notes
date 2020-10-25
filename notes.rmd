@@ -1,0 +1,55 @@
+---
+title: "ISF 2020 notes"
+author: "Timothy Hyndman"
+date: "26/10/2020"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    collapsed: false
+    smooth_scroll: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+# Session: Global Modelling for Forecasting
+
+### Transfer learning schemes for global forecasting models using recurrent neural networks
+#### Kasun Bandara
+#### Abstract: 
+Forecasting models that are trained across a set of many time series, known as Global Forecasting Models (GFM), have shown recently promising results in forecasting competitions and real-world applications, outperforming many state-of-the-art univariate forecasting techniques. In most cases, GFMs are implemented using deep neural networks, and in particular Recurrent Neural Networks (RNN) that require sufficient amounts of time series to estimate their numerous model parameters. Many time series databases however suffer from having only a limited number of time series. The transfer learning (TL) methodology has been proposed to overcome the limitation of training data by enabling knowledge transfer from models trained on a source task with sufficient amount of training data to a target task with few training instances. Although several studies have been conducted to forecast better under these circumstances, how to accurately forecast with GFMs in a situation with less data has not yet been thoroughly studied. To alleviate this problem, in this study, we investigate to what extent the TL methodology is useful, when using RNNs for GFM training. We propose a Residual RNN stacking architecture, supplemented by various TL schemes to overcome the challenges of time series sparsity, when developing GFMs. Using a comprehensive model training plan, we demonstrate the effectiveness of our proposed TL schemes for leveraging the capabilities of GFMs to forecast with a limited amount of time series. Furthermore, in a situation where time series data is not available to build a pre-trained model for knowledge transfer, we use GRATIS, a statistical generative model that artificially generates time series with diverse characteristics. In our evaluation on the kaggle web traffic forecasting challenge dataset, our proposed TL schemes are able to improve the baseline accuracy of GFM models, and outperform state-of-the-art univariate forecasting methods. The results also indicate that our approach can be operated to improve the forecasting accuracy, even in the presence of a single time series.
+
+#### Notes:
+
+
+### Automatic feature-based forecast model averaging
+#### Alexey Chernikov
+
+### Local model-agnostic interpretability in global time series forecasting
+#### Dilini Rajapaksha
+
+### Addressing data heterogeneity in time series forecasting using global ensemble models
+#### Rakshitha Godahewa
+
+### Global models for time series forecasting: a simulation study
+#### Hansika Hewamalage
+
+### Why does joint forecasting of multiple time series work so well?
+#### Pablo Montero-Manso
+#### Abstract:
+Organizations usually need to forecast multiple time series coming in groups, such as the demands for all products offered at one store, guest arrivals to all accommodation facilities at one city, etc. Local forecasting methods model each series individually, they fit a model to each product category or each accommodation facility. Global methods fit only one model for the whole group, pooling together the data for all time series. We can expect global methods to work better when the time series in the group are of similar nature, and local would be best when the group is heterogeneous. 
+
+However, in the last few years global methods have been outperforming local methods even in some highly heterogeneous datasets. There is a lack of understanding of this phenomenon and the underlying principles that guide it. In particular, practitioners interested in the adoption of global methods face difficulties such as: When should we use global methods? How to group series? What constitutes similar series? What types of models are suitable for global methods? What sort of preprocessing do we need? What are the tradeoffs between local and global methods?
+
+We will present theoretical and empirical results comparing global and local methods, focusing on two main ideas:
+
+1) Global methods can be as accurate as local for any set of time series, including very heterogeneous sets. The strong assumption of global methods to fit a single model for all series in the set is not restrictive for forecasting.
+
+2) The complexity of local methods grows with the size of the set. For example, even a simple local method such as exponential smoothing can be more complex than a global deep neural network when considering a large dataset.
+
+We will show how these results can be applied in practice for designing new forecasting algorithms that improve over the state-of-the-art local methods.
