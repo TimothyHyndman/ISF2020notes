@@ -214,3 +214,13 @@ Show a similar thing with the M4 dataset
 #### Ruben Loaiza-Maya
 #### Abstract:
 Proper scoring rules are used to assess the out-of-sample accuracy of probabilistic forecasts, with different scoring rules rewarding distinct aspects of forecast performance. Herein, we re-investigate the practice of using proper scoring rules to produce probabilistic forecasts that are `optimal' according to a given score, and assess when their out-of-sample accuracy is superior to alternative forecasts, according to that score. Particular attention is paid to relative predictive performance under misspecification of the predictive model. Using numerical illustrations, we document several novel findings within this paradigm that highlight the important interplay between the true data generating process, the assumed predictive model and the scoring rule. Only if a predictive model is sufficiently compatible with the true process to allow a particular score criterion to reward what it is designed to reward, will this approach to optimization reap benefits. Subject to this compatibility however, the superiority of the optimal forecast will be greater, the greater is the degree of misspecification. We explore these issues using a range of different scenarios, and using both artificially simulated and empirical data.
+
+#### Notes:
+Missed, due to previous session going over time
+
+### Prediction of harvest date of shrimp in an aquaculture system
+#### Ismael Sanchez
+#### Abstract:
+Shrimp is among the most valuable traded marine product in the world. Accurate prediction of both growing curve and optimal harvest date of shrimp in farms is, therefore, very important. Quality engineers can use it to detect a low growing of the shrimps. Managers can use it to negotiate prices in advance and organize the harvesting logistics. In this work, we build a forecasting system to provide the predictive density of the weight of the shrimp for the future weeks. Alternative approaches are compared, such us the use of growth models and nonparametric techniques. We apply the methodology to a large scale fish farm in northern Peru.
+#### Notes:
+Predicting shrimp growth in a pond - use similar trajectories in data to help build predictive models. Use predictive errors from similar trajectories or something like that I think
