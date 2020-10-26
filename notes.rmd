@@ -224,3 +224,155 @@ Missed, due to previous session going over time
 Shrimp is among the most valuable traded marine product in the world. Accurate prediction of both growing curve and optimal harvest date of shrimp in farms is, therefore, very important. Quality engineers can use it to detect a low growing of the shrimps. Managers can use it to negotiate prices in advance and organize the harvesting logistics. In this work, we build a forecasting system to provide the predictive density of the weight of the shrimp for the future weeks. Alternative approaches are compared, such us the use of growth models and nonparametric techniques. We apply the methodology to a large scale fish farm in northern Peru.
 #### Notes:
 Predicting shrimp growth in a pond - use similar trajectories in data to help build predictive models. Use predictive errors from similar trajectories or something like that I think
+
+### Identification of factors and forecasting the possibility of human injuries due to an accident in colombo-katunayake expressway, Sri Lanka
+#### Kushan Munasinghe
+#### Abstract: 
+Accidents are one of the main social problems in the world as well as developing countries like Sri Lanka, which cause damage or injuries unintentionally and unexpectedly. Sri Lanka's expressway system was launched in 2011 and currently has three major expressways: Southern Expressway, Colombo-Katunayake Expressway, and Outer-Circle Expressway. After the construction of expressways, many people opted for expressways on the basis of time, traffic, ease of driving, etc., rather than normal roads. The number of accidents on expressways has been on the rise in recent years. Nowadays, the rate of accident occurrence in Colombo-Katunayake Expressway is high compared to the other two Expressways and there was no previous research has been done in Sri Lanka regarding accidents in Colombo-Katunayake expressway. The aim of this study is to identify the factors that contribute to the accidents on the Colombo-Katunayake expressway and to develop appropriate regression and data mining models to forecast the possibility of human injuries due to an accident with a higher level of accuracy.
+
+In this study, 704 total accident cases of Colombo-Katunayake expressway were considered during the period from 2013 to 2019. Pearson Chi-square, Logistic regression, Point biserial correlation and Kruskal–Wallis H tests were used to identify the association between the binary response variable (possibility of human injuries) and other influential variables. Finally, from selected predictor variables, seven variables: time category, driver’s age category, vehicle type, reason for accident, number of vehicles involved, cause for accident and rainfall were identified as influencing variables to the possibility of human injuries under 5% level of significance. Initially, the Binary Logistic Regression (BLR) model was performed to forecast the possibility of human injuries. Further, Classification tree (CART), Naïve Bayes classification algorithm, and Probabilistic neural network (PNN) were used in the study as data mining techniques to forecast the possibility of human injuries for the same datasets which were used to build and test the BLR model. Random Under-Sampling technique was used to overcome the class imbalance problem that persists in the data set considered in the study. Finally, Best performed models were found from each approach and the forecasting ability of these models was compared to come up with the best model to predict the possibility of human injuries.
+
+The BLR model predicts the possibility of human injuries due to accidents with an accuracy of 70.7% and among data mining models, the PNN exhibits a higher overall prediction accuracy than classification tree and Naïve Bayes. The best PNN outperforms the best BLR model and finally, this model can be proposed as a better model to forecast the possibility of human injuries in Colombo-Katunayake expressway. The best performed PNN model contains two hidden layers, with 176 neurons in the pattern layer and two neurons in the output layer with 0.1 spread value. This model has the ability to forecast unseen data with 75.7% accuracy, 78.7% precision and 92.3% recall. The final model developed by this study can be used to implement safety improvements against traffic accidents in expressways of Sri Lanka.
+
+#### Notes:
+Didn't listen.
+
+
+# Session: Hierarchical Forecasting I
+
+### Forecast reconciliation: A geometric view with new insights on bias correction
+#### George Athanasopoulos
+#### Abstract:
+A geometric interpretation is developed for so-called reconciliation methodologies used to forecast time series that adhere to known linear constraints. In particular, a general framework is established nesting many existing popular reconciliation methods within the class of projections. This interpretation facilitates the derivation of novel theoretical results. First, reconciliation via projection is guaranteed to improve forecast accuracy with respect to a class of loss functions based on a generalised distance metric. Second, the MinT method minimises expected loss for this same class of loss functions. Third, the geometric interpretation provides a new proof that forecast reconciliation using projections results in unbiased forecasts provided the initial base forecasts are also unbiased. Approaches for dealing with biased base forecasts are proposed. An extensive empirical study on Australian tourism flows demonstrates the theoretical results of the paper and shows that bias correction prior to reconciliation outperforms alternatives that only bias-correct or only reconcile forecasts.
+
+#### Notes:
+
+Generalised perspectives on forecast reconciliation. 
+
+- Hierarchical time series defined by linear constraints (not just sums)
+- Reconciliation via projection improves forecast accuracy w.r.t a certain class of loss functions
+- 
+- 
+
+Can define time series as series which lie in coherent subspace. For example, 
+$Y_T = Y_A + Y_B$ forms a plane with basis vectors (1, 1, 0) and (???). When we reconcile a forecast, we are mapping incoherent forecasts to the coherent subspace. Do this by pre-multiplying base forecasts by a nxn matrix that has $s$ (the subspace) as its image. 
+
+So the most obvious is to use a Euclidean orthogonal projection. This guarentees that
+- Base and reconciled forecasts are as close as possible
+- Reconciled forecasts are closer to actuals than base forecasts
+
+However, this measure is the sum of squared errors across ALL series. Consider differences in scales and predictability. May want to suggest different weights.
+
+Using weights in the loss function you end up with oblique projections. You can then show that property two above still holds using a norm based on the weights.
+
+MinT is a unique oblique projection that minimises the trace of your covariance matrix. There was a neat geometric explanation of how this minimises forecast errors of the reconciled forecasts.
+
+Empirical results: Looked at australian tourism data. Use auto.arima() to generate 1 step ahead forecasts. Use 4 different projections, based on different loss functions. Each projection should be best for the different loss functions. The projection for the loss function results in errors being strictly better than base functions. MinT does best on average for everything though.
+
+So can either
+- Choose to guarantee that reconciled forecasts improve upon base forecasts
+- find the reconciliation method that is best on average
+
+Fantastic talk!!!
+
+
+### Probabilistic Forecasts in Hierarchical Time Series
+#### Anastasios Panagiotelis
+
+#### Abstract:
+We develop a framework for prediction or forecasting of multivariate data that follow some known linear constraints, such as the example where some variables are aggregates of others. For point prediction, an increasingly popular technique is reconciliation, whereby predictions or forecasts are made for all series (so called ‘base’ forecasts) and subsequently adjusted to ensure coherence with the constraints. This paper extends reconciliation from the setting of point prediction to probabilistic prediction. A novel definition of reconciliation is developed and used to construct densities and draw samples from a reconciled probabilistic prediction. In the elliptical case, it is proven that the true predictive distribution can be recovered from reconciliation even when the location and scale matrix of the base prediction are chosen arbitrarily. To find reconciliation weights, an objective function based on scoring rules is optimised. The energy and variogram scores are chosen since the log score is improper in the context of comparing unreconciled to reconciled forecasts, a result also proved in this paper. To account for the stochastic nature of the energy score, optimisation is achieved using stochastic gradient descent. The proposed algorithm is applied in a number of simulated scenarios and to the empirical example of forecasting electricity generation from different sources (e.g, renewable v non-renewable, coal, gas, wind solar etc.).
+
+#### Notes:
+
+https://anastasiospanagiotelis.netlify.app/talks/probreco/probreco#1
+
+Can do the same definition for coherence, but on probabilities, instead of points. End up using some measure theory to talk about images, instead of pre-multiplying by a matrix, and pre-images instead of inversions.
+
+Take the probability from the space (A), and assign that probability to the image on the subspace.
+
+They proved:
+- Reconciling a sample from base distribution, gives sample from reconciled distribution
+- If base is elliptical, then reconciled is elliptical (eg normal)
+- For any mu and sigma, there exists a d and G (a reconciliation) that recovers the true prediction distribution (but it's not feasible to find these! and won't always be a projection)
+
+So need to find a way to find d and G (and not necessarily use a projection). 
+
+We use a scoring function and optimise with respect to this scoring. Example
+- log score. But doesn't satisfy some desired properties
+- energy score
+- variogram score
+
+Got a little lost here... you use scoring function to find d and G...
+
+
+### A geometry inspired hierarchical forecasting methodology
+#### Nikos Kourentzes
+#### Abstract:
+
+Hierarchical forecasting has been central to business forecasting and recently has received a lot of attention in research. Moving beyond classical top-down and bottom-up alternatives, hierarchical forecasting is nowadays seen as a reconciliation problem. The objective is to adjust independent (base) forecasts by combining them, subject to additivity constraints, to obtain the hierarchical (coherent) forecasts. Although there are multiple approaches to do this, the widely used MinT methodology provides such a solution and has been shown to provide good results. Recently, a geometric interpretation of the methodology provided additional insights into its properties and operation. We rely on this geometric view to investigate alternative solutions to the hierarchical forecasting problem. First, we show that we can provide a general and efficient geometric formulation of the alternative MinT-family reconciliation heuristics, for low dimensional problems, that moves away from the regression formulation of the problem. Then we proceed to propose an exact and an approximate reformulation that both overcome the dimensionality limitation and provide competitive solutions to MinT.
+
+#### Notes:
+
+Showed same geometric explanation as first talk by George Athanasopolous. Showed that MinT is same as choosing the right projection angle. But this is infeasible to do directly?
+
+Can plot these rotations in a rotation plot.
+
+But using the angle plot is useful for diagnosing estimation errors for W. 
+
+### Don't evaluate coherent hierarchical forecasts using the MAPE!
+#### Stephan Kolassa
+#### Abstract:
+
+On the one hand, we want hierarchical forecasts to be coherent (i.e., sum-consistent: the forecast of a sum total should be the total of the component forecasts). On the other hand, we want low errors, such as MAPEs. On the third hand, optimal point forecasts depend on the error measure. Assessing coherent hierarchical forecasts on MSEs makes sense, because MSEs are minimized by expectation forecasts, and the expectation is additive. However, the MAPE-minimizing functional is not additive, so if we want to minimize the MAPE, it makes no sense to aim for coherent forecasts - and vice versa. This is analogous to the fact that (hopefully) nobody will expect hierarchical quantile forecasts to be coherent. We investigate this effect and call for an increased emphasis on distributional aspects in hierarchical forecasting.
+
+#### Notes:
+
+The contentions
+- The only KPI (measure?) that makes sense for heirarchical point forecasting is the RMSE
+- We should pay more attention to multivariate predictive densities
+
+Point forecasts depend on error measure. Example with gamma.
+
+Example: quantile forecasts should not be coherant (he means, shouldn't sum up). 
+
+Example: if want median forecast, then we don't want this either. So shouldn't evaluate with MAE. 
+
+Example: similar but for MAPE
+
+Say we should think about joint predictive densities.
+
+Very basic level talk.
+
+
+### Optimal Top-Down Hierarchical Forecast Reconciliation
+#### Robert Davies
+#### Abstract:
+
+This paper develops a new method to perform top-down hierarchical forecast reconciliation that is designed to minimize the overall amount of revision to the original, unreconciled forecasts. This would be useful in situations where one needed to, or had a strong reason to, use a top-down hierarchical forecast reconciliation, but wanted to preserve the original, unreconciled forecasts as much as possible. Such situations are common in many business settings where there are often strong priors on the top-level growth of the business or different business metrics. If we define the difference between the original, unreconciled forecasts and the final, reconciled forecasts as a reconciliation error, the method developed in this paper works by minimizing a loss functions over the reconciliation errors subject to the constraint that the top-most forecast remains unaltered. The paper builds off the methods developed in Hyndman et al (2011) and elsewhere, but introduces the concept of using a constrained optimization approach to achieve a top-down reconciliation.
+
+Two backtesting exercises are presented where the method in this paper is contrasted with other popularly used top-down reconciliation methods. The first exercise uses an internal dataset on revenue for different business metrics within Amazon Web Services (AWS). The second exercise uses publicly available data on tourism in Australia. In both exercises the optimal top-down method introduced in this paper had the smallest overall revision to the original, unreconciled forecasts. In the first exercise it had an average absolute revision of 2.40% compared with 4.85% for the next best performing top-down method. In the second exercise it had an average absolute revision of 0.40% compared with 0.89% for the next best performing top-down method. In terms of accuracy, the method introduced in this paper had comparable accuracy results with the best performing of the existing top-down methods considered and not much worse than the accuracy of the original, unreconciled forecasts or the (not top-down) optimal method introduced in Hyndman et al (2011). The method developed here had the lowest average MAPE among all top-down methods in the first backtesting exercise with an average MAPE of 17.60% compared with 18.26% for the next best performing top-down method. The original, unreconciled forecasts had an average MAPE of 16.96% and the optimal method from Hyndman et al (2011) had an average MAPE of 17.29%. In the second backtesting exercise the method developed here had an average MAPE of 4.91% compared with 4.85% for the best performing top-down method. The original, unreconciled forecasts had an average MAPE of 4.86% and the optimal method from Hyndman et al (2011) had an average MAPE of 4.83%.
+
+#### Notes:
+
+Didn't show
+
+
+### GRAVITATIONAL FORECAST RECONCILIATION
+#### Carla Freitas Silveira Netto
+#### Abstract:
+In many situations, companies do not have time-series of sales data, in geographical disaggregation corresponding to their marketing strategy. Even more challenging, if those companies want to enter a new market or to expand their business to new locations, they will probably arrive at a new territory having just a total sales estimation for the new country or city without any sales history on more local levels. This may be a problem because marketing activities are usually executed at a more local, disaggregated level. This total, aggregated, forecast will need to be divided into smaller geographical regions coherently to the total forecast. This is usually done by applying a statistical approach known as forecast reconciliation. These approaches, so far, use actual sales data or at least historical sales proportions on a disaggregated level. The problem is that such data may not always be available. In this paper, we propose a new forecasting reconciliation approach. We forecast the most aggregated level sales using a deep learning technique -- Long Short-Term Memory (LSTM) (Hochreiter & Schmidhuber, 1997) -- adapted to time-series forecasting and then reconcile them to lower levels with an alternative top-down approach that uses a gravitational model inspired in Huff's gravity model (Huff, 1964). Our gravitational forecast reconciliation (GFR) has the advantage of, instead of using historical proportions, it distributes the total sales among more granular levels with a gravitational model built with easily/publicly available and/or low-cost geographical POI data. We test and validate our approach with historical sales proprietary data of two different companies from two different countries, a Brazilian and a Turkish manufacturer of construction materials, both major players in their respective countries and markets. The results show that our proposed reconciliation approach has a similar or better performance than the benchmark approaches at all levels of the geographical aggregation tested. The key theoretical contribution is to demonstrate that gravitational models based on agglomeration theory (Liu, Steenkamp, & Zhang (2018) can be used to predict and not only explain behavior. Our methodological contribution enables companies to distribute and reconcile forecasts to lower levels of aggregation when no actual disaggregated sales data or historical sales proportions are available. For practice, the GFR approach offers several advantages. First, companies can apply it to new territories, points of sales, or marketing channels, distributing the forecasted aggregated sales into smaller granular spatial units. Second, GFR also allows the development of a coherent forecast system based on the location, quantity, and diversity of points of interest (POIs) of a specific region, according to the desired company strategy. Third, it is easy and relatively cheap to implement in any organization, from all sizes and economic sectors, helping them to distribute sales forecasts to new regions or markets where the company plans to direct the market and have no historical sales data, just a total estimation. Finally, GFR can be embedded in production planning decision support systems and help companies to devise their future marketing strategies.
+
+#### Notes:
+
+Situation where you want to do top down reconciliation. They propose a method they called 'gravitational forecast reconciliation'.  Based on the Huff Gravity model. 
+
+This is a model of customers living in population centers, with shopping facilities. Individual based model that includes euclidian distance between population centre and facility (determining proportions for the top down model). Does not require historical data or proportions because you use the model.
+
+Have data on 
+- demographics + geography
+- economic indicators
+- POIs
+- something else
+
+
+Only have forecast for aggregate level + need to disaggregate to geographical areas = can use this method.
