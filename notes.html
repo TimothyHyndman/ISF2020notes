@@ -1577,6 +1577,26 @@ div.tocify {
 </div>
 <div id="notes" class="section level4">
 <h4>Notes:</h4>
+<ul>
+<li>Global model: learns parameters from all series</li>
+<li>Don’t perform so well if you don’t have much data. How do you deal with this?</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Augment the data by generating extra stuff</li>
+</ol>
+<ul>
+<li>GRATIS</li>
+<li>DBA</li>
+<li>STL + MBB</li>
+</ul>
+<p>Gratis generates time series with diverse characterstics, the STL+MBB and DBA generate similar time series.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Can also use transfer knowledge (as well as? or as a different option?)</li>
+</ol>
+<p>He used RNN with residual connections.</p>
+<p>Stopped being able to follow from here…</p>
+<p>Tested his method out on a bunch of data and compared to prophet, autoarima, and smooth::es. Results varied based on the data, but generally performed better than the benchmarks. Took much more computation than the statistical methods. MBB worked better than DBA for AusEnergy dataset - probably because it was smaller? Both DBA and MBB did better than GRATIS.</p>
+<p>Summary: Can still use RNNs without big data if you can augment your data (and maybe do some transfer learning?). The best methods are DBA and STL+MBB. Still depends on the data as to whether you can outperform statistical methods.</p>
 </div>
 </div>
 <div id="automatic-feature-based-forecast-model-averaging" class="section level3">
@@ -1584,11 +1604,43 @@ div.tocify {
 <div id="alexey-chernikov" class="section level4">
 <h4>Alexey Chernikov</h4>
 </div>
+<div id="abstract-1" class="section level4">
+<h4>Abstract:</h4>
+<p>Time series features are widely used in Big Data environments due to their capabilities in noise reduction, dimensionality reduction, and capturing relevant information of an object. Their use in time series classification achieves state-of-the-art accuracy and has become a de-facto standard. In forecasting, recent studies also demonstrate that time series features are able to contribute to achieve good results, e.g., in combination approaches with meta-learner based models. For example, the second place in the M4 Forecasting Competition was won by Feature-based Forecast Model Averaging (FFORMA), a model that exploits cross-series information in a meta-learner environment. In this model, the cross-series information is obtained using 42 statistical features that then serve as an input into the meta-learner. Despite the good result achieved with hand-crafted features, the approach has the potential limitations that hand-crafted features require domain knowledge and significant data-engineering work, which oftentimes is not feasible and may make the features not flexible enough to adapt to new datasets.</p>
+<p>In this study we propose a novel approach of a meta-learner with time series features. We replace the hand-crafted features with automatically generated features of time series in FFORMA. In particular, We present a deep-learning method to extract time series features specifically for forecasting using a convolutional neural network. We also demonstrate the impact our features have on the prediction capabilities of meta-learner based models like FFORMA, and compare the results with a host of benchmarking methods, and in particular to methods based on conventional statistical features. We are able to obtain promising results in various application areas, in particular on the M4 dataset, even with significantly smaller amounts of features than the comparison methods.</p>
+</div>
+<div id="notes-1" class="section level4">
+<h4>Notes:</h4>
+<p>Feature based forecasting eg - FFORMA - FFORMS - etc</p>
+<p>FFORMA uses TS features as a core component for combining models. Came second in M4 competition. Uses handcrafted features (tsfeatures, catch22, tsfresh). Disadvantages: - computationally intensive - low discriminative power - require domain knowledge - feature engineering</p>
+<p>Their research was into automating this stuff. Come up with an autoencoder. There was some problem with this, I think to do with not encoding based on the whole series, just using parts of it.</p>
+<p>Static features: describe whole time series Dynamic: describe time series in moment of time (look at a window)</p>
+<p>Wanted to extract static features, but autoencoder only gives you dynamic features.</p>
+<p>Use CNN to take dynamic features and turn into static features. Got 16 features which they then tested out on M4 data. Clustering on these features results in clusters with similar looking time series.</p>
+<p>Using these ‘deep features’ results in better performance that fforma with tsfeatures (and other benchmarks) in most benchmarks, others were close. This is important because FFORMA is based on M4 data to begin with (so automatic features does better than expert selection).</p>
+<p>Also</p>
+<ul>
+<li>Used fewer features (42 vs 16)</li>
+<li>Not sensiitve to length of series</li>
+</ul>
+</div>
 </div>
 <div id="local-model-agnostic-interpretability-in-global-time-series-forecasting" class="section level3">
 <h3>Local model-agnostic interpretability in global time series forecasting</h3>
 <div id="dilini-rajapaksha" class="section level4">
 <h4>Dilini Rajapaksha</h4>
+</div>
+<div id="abstract-2" class="section level4">
+<h4>Abstract:</h4>
+<p>Forecasting models that are trained across a set of multiple related time series, known as Global Forecasting Models (GFM), have shown promising results in forecasting competitions and real-world applications while outperforming many typical univariate forecasting approaches. One aspect of the popularity of forecasting models such as ETS and ARIMA is their relative simplicity and interpretability which enables the trust of the users towards the forecast. The main drawback of more complex global models, such as globally trained neural networks (NN), is their lack of interpretability, especially localized to a particular time series. This reduces the trust and confidence of the stakeholders when making decisions based on the forecasts without being able to understand the predictions. To mitigate this problem, in this work, we propose a novel local model-agnostic interpretability approach to explain the forecasts given from forecasting models that are built using global modelling techniques such as NNs. The proposed framework is able to explain the forecast given from a global model for a particular time-series while considering the forecasting model as a black-box model, in a model-agnostic way. To achieve this we train simpler univariate models that are considered interpretable (e.g., ETS) on the time series which needs to be explained while minimizing the forecasting difference between the global black-box model and the statistical model. As the results of the proposed approach, the forecast produced by the black-box model can therewith be explained through components such as relevant lags, trend, seasonality, and potentially the influence of external factors, thus enabling the user to better understand the forecast.</p>
+</div>
+<div id="notes-2" class="section level4">
+<h4>Notes:</h4>
+<p>Generally simple models are more interpretable and less accurate, and complex models are more accuracte but less interpretable. So there is a trade off. To overcome this trade off, find an explanation of complex models. Enter “Local Interpretability”. Common in Machien learning, uses local neighbourhood to explain particular predictions.</p>
+<p>In time-series forecasting we have local and global forecasting. Want to use local interpretability for global model.</p>
+<p>Global models have higher in-sample error and generalise better (i.e. doesn’t over fit).</p>
+<p>Not sure exactly how the local explainers were generated.. something to do with fitting simple models (eg es, prophet etc) on the ‘fit of the global model’?</p>
+<p>Lost the flow of this talk after this.</p>
 </div>
 </div>
 <div id="addressing-data-heterogeneity-in-time-series-forecasting-using-global-ensemble-models" class="section level3">
@@ -1596,11 +1648,50 @@ div.tocify {
 <div id="rakshitha-godahewa" class="section level4">
 <h4>Rakshitha Godahewa</h4>
 </div>
+<div id="abstract-3" class="section level4">
+<h4>Abstract:</h4>
+<p>The performance of Neural Networks (NN) was poor compared to the traditional univariate forecasting models in many forecasting competitions in the past. But recently, global forecasting models have demonstrated that they have the potential to outperform traditional univariate forecasting models such as Exponential Smoothing State Space Model (ETS) and Autoregressive Integrated Moving Average (ARIMA) after contributing to the winning solution of the M4 forecasting competition. However, if a time series database contains heterogeneous series, the accuracy of the global forecasting models may degrade. This can happen especially through underfitting the data. To bridge this gap, in this study, we focus on improving the accuracy of global forecasting models by addressing data heterogeneity using ensembling approaches. We present a series of ensemble forecasting models based on linear regression, Feedforward Neural Networks (FNN) and Recurrent Neural Networks (RNN) with Long Short-Term Memory (LSTM) cells. These models aggregate the predictions provided by a series of sub-models trained over different subgroups of time series within a dataset. The implemented ensemble models include clustering techniques that incorporate feature clustering, distance-based clustering and random clustering and the ensembling technique used for the winning solution of the M4 forecasting competition; the ensemble of specialists. We further combine the forecasts of our global models and traditional univariate forecasting models to improve the forecasting accuracy. Over six publicly available datasets, we show that ensembling a series of models trained over different parts of a particular dataset can improve the forecasting accuracy compared to non-ensemble models based on four evaluation metrics.</p>
+</div>
+<div id="notes-3" class="section level4">
+<h4>Notes:</h4>
+<ul>
+<li>GFMs may not be so good is the time series are heterogeneous (diverse characteristics)</li>
+<li>Can train multiple GFMs for groups of similar time series (eg use clustering on series)</li>
+</ul>
+<p>Can also use ensembling - aggregating predictions provided by a bunch of models.</p>
+<p>2 main types - sequential (boosting), or parallel (bagging)</p>
+<p>Also aggregating (averaging methods)</p>
+<p>Considered three base methods (FFNN, RNN, and pooled regression). clustering methods (features, distance-based (DTW)) ensemble methods too</p>
+<p>Conclusion: Clustered ensemble models work well for heterogeneous datasets</p>
+</div>
 </div>
 <div id="global-models-for-time-series-forecasting-a-simulation-study" class="section level3">
 <h3>Global models for time series forecasting: a simulation study</h3>
 <div id="hansika-hewamalage" class="section level4">
 <h4>Hansika Hewamalage</h4>
+</div>
+<div id="abstract-4" class="section level4">
+<h4>Abstract:</h4>
+<p>Many state-of-the-art statistical techniques used for forecasting since the early days are univariate forecasting techniques which build a model per every series in isolation. However, with the recent advances in the infrastructure for storage, companies have collected enormous amounts of data over the years. Consequently, in the current context of Big Data, the nature of the forecasting problem has changed from predicting isolated series to predicting many (possibly related) series. The availability of large sets of time series opens up the opportunity to develop global models which simultaneously learn from many time series as opposed to traditional univariate techniques. Specifically in this respect, Recurrent Neural Networks (RNN) have demonstrated promising performance, e.g. in the M4 forecasting competition. Nevertheless, it still remains unclear under which circumstances global forecasting models can outperform the univariate benchmarks, especially along the dimensions of homogeneity/heterogeneity of series, complexity of patterns in series, complexity of models, and the lengths/number of series.</p>
+<p>Our study investigates these issues, by simulating a number of datasets that have controllable characteristics. We perform experiments involving a number of global forecasting models including RNNs, pooled regression models and Feed-Forward Neural Networks within these simulated settings and compare their performance against standard statistical univariate benchmarks. In this manner, we seek to comprehend the behaviour of global forecasting models when encountered with datasets of specific characteristics. In our work, we introduce complexity into the time series in terms of the number of parameters of the Data Generating Process (DGP) as well as its non-linearity. The heterogeneity is introduced by mixing time series generated from several DGPs into a single dataset. Unlike the real-world datasets, the simulated environments render it possible to have complete control over the underlying datasets. Our initial experiments demonstrate that developing a global model across many short series helps better than developing many models on every individual short series on a homogeneous set of series. Also, as is to be expected, linear pooled regression models are competitive in fitting the series coming from a linear DGP. When it comes to more complex DGPs in terms of non-linearity, the complex modelling capabilities of the RNNs help further. Similarly, with respect to heterogeneous series with multiple simple DGPs as well, it is evident that RNNs can show superior performance as global models with their complex functionality. Thus, we are able to characterise trade-offs between the heterogeneity, complexity of the series and the forecasting performance of global models.</p>
+</div>
+<div id="notes-4" class="section level4">
+<h4>Notes:</h4>
+<p>Global models work well on ‘related’ time series. But what does ‘related’ mean in this context?</p>
+<p>They simulate a number of time series, then run experiments on how related the time series have to be for global models to work well.</p>
+<p>Generate data with AR models, seasonal AR models, Mackey-Glass Equation, SETAR model, chaotic logistic map, Forecast with RNN (lstm cells with peephole connections), FFNN, LGBM, pooled regression, univariate AR models</p>
+<p>Did a bit of data preprocessing - Normalisation (helpful esepcially for global models) - Log transforms - Moving window creation - Window normalisation</p>
+<p>Bunch of experimental scenarios, varying aspects of the series, and the models.</p>
+<p>Different models do well in different scenarios - RNNs seem to do okay with Heterogenous series. LGBM good in some scenarios. PR good in others. AR and FFNN never the best.</p>
+<ul>
+<li>PR good for simple homogeneous patterns.</li>
+<li>More complex needs LGBMs and RNNs</li>
+<li>For heterogeneous series, use complex models again, even if individual series are simple.</li>
+<li>RNNs, LGBMs competitive in variety of situations</li>
+<li>AR, PR make assumptions which might not hold</li>
+<li>LGBMs very good computationally, especially compared to RNNs</li>
+<li>Local models get more complex with more series, and computation time increases with nubmer of series too</li>
+</ul>
 </div>
 </div>
 <div id="why-does-joint-forecasting-of-multiple-time-series-work-so-well" class="section level3">
@@ -1608,7 +1699,7 @@ div.tocify {
 <div id="pablo-montero-manso" class="section level4">
 <h4>Pablo Montero-Manso</h4>
 </div>
-<div id="abstract-1" class="section level4">
+<div id="abstract-5" class="section level4">
 <h4>Abstract:</h4>
 <p>Organizations usually need to forecast multiple time series coming in groups, such as the demands for all products offered at one store, guest arrivals to all accommodation facilities at one city, etc. Local forecasting methods model each series individually, they fit a model to each product category or each accommodation facility. Global methods fit only one model for the whole group, pooling together the data for all time series. We can expect global methods to work better when the time series in the group are of similar nature, and local would be best when the group is heterogeneous.</p>
 <p>However, in the last few years global methods have been outperforming local methods even in some highly heterogeneous datasets. There is a lack of understanding of this phenomenon and the underlying principles that guide it. In particular, practitioners interested in the adoption of global methods face difficulties such as: When should we use global methods? How to group series? What constitutes similar series? What types of models are suitable for global methods? What sort of preprocessing do we need? What are the tradeoffs between local and global methods?</p>
@@ -1618,6 +1709,47 @@ div.tocify {
 <li><p>The complexity of local methods grows with the size of the set. For example, even a simple local method such as exponential smoothing can be more complex than a global deep neural network when considering a large dataset.</p></li>
 </ol>
 <p>We will show how these results can be applied in practice for designing new forecasting algorithms that improve over the state-of-the-art local methods.</p>
+</div>
+<div id="notes-5" class="section level4">
+<h4>Notes:</h4>
+<p>Local methods: statistical but also NN, trees etc when fit on single series Global methods:</p>
+<p>We compare generalization gaps of local and global methods. The generalization gap increases with the number of parameters of the model, the more parameters, the worse it generalizes. (eg see occam’s razor, akaike information criteria).</p>
+<p>IMagine we have dataset of 100 time series. Using local method like seasonal arima, each model needs about 2-5 parameters, plus differences. So around ~500 parameters for the whole dataset</p>
+<p>Using a global method, if you can get to the same training error with fewer than 500 parameters, you will have better generalisation.</p>
+<p>Broadly speaking, model complexity of local methods grows with number of series, but complexity of global methods is fixed.</p>
+<p>BUUTTTT - multi-task learning not been that successful in general (really?) - useless for really complex models (more params than samples (what does this mean)) - does not explain why we can fit really simple global models</p>
+<div id="approximation-capacity-of-global-methods" class="section level5">
+<h5>Approximation capacity of global methods</h5>
+<p>why can we fit different time series with the same model.</p>
+<p>Given a local method, there exists a global method that produces texactly the same predictions</p>
+<ul>
+<li>Does not mean that they are easy to find</li>
+<li>think about ‘true’ data generating processes for each time series</li>
+<li>set of time series does not matter</li>
+<li>it does not happen in general outside of time series</li>
+</ul>
+<p>Example of how you can use AR model to exactly generate any degree 2 polynomial. So need just 1 global model with 3 parateters, vs each local model needing 3 parameters if you model each as degree 2 polynomial.</p>
+<p>Show a similar thing with the M4 dataset</p>
+<ul>
+<li>Global methods are specific type of multi-task learners</li>
+<li>Can approximate as well as local methods</li>
+<li>IN practice can find very simple global models that fit large datasets</li>
+<li>in the absence of strong prior knowledge that favors one particular local method, global methods will be able to exploit the data much better.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="session-probabilistic-forecasting" class="section level1">
+<h1>Session: Probabilistic Forecasting</h1>
+<div id="optimal-probabilistic-forecasts-when-do-they-work" class="section level3">
+<h3>Optimal probabilistic forecasts: When do they work?</h3>
+<div id="ruben-loaiza-maya" class="section level4">
+<h4>Ruben Loaiza-Maya</h4>
+</div>
+<div id="abstract-6" class="section level4">
+<h4>Abstract:</h4>
+<p>Proper scoring rules are used to assess the out-of-sample accuracy of probabilistic forecasts, with different scoring rules rewarding distinct aspects of forecast performance. Herein, we re-investigate the practice of using proper scoring rules to produce probabilistic forecasts that are `optimal’ according to a given score, and assess when their out-of-sample accuracy is superior to alternative forecasts, according to that score. Particular attention is paid to relative predictive performance under misspecification of the predictive model. Using numerical illustrations, we document several novel findings within this paradigm that highlight the important interplay between the true data generating process, the assumed predictive model and the scoring rule. Only if a predictive model is sufficiently compatible with the true process to allow a particular score criterion to reward what it is designed to reward, will this approach to optimization reap benefits. Subject to this compatibility however, the superiority of the optimal forecast will be greater, the greater is the degree of misspecification. We explore these issues using a range of different scenarios, and using both artificially simulated and empirical data.</p>
 </div>
 </div>
 </div>
