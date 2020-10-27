@@ -569,3 +569,107 @@ Algorithm to detect data leakage based on pearson's correlation. Takes window of
 Main function is `find_dataleaks()`. A bit of explanation about how to use it. Can also determine reason in `reason_dataleaks()`.
 
 She didn't check M5 as package not fast enough yet.
+
+
+# Practicioner session: Enhancing shipment forecast for CPG companies using machine learning and demand sensing
+
+### Varun Valsaraj (SAS AI Center of Excellence), Kedar Prabhudesai (SAS AI Center of Excellence)
+
+#### Notes:
+
+Forecasting shipments for CPG companies
+
+Challenge: Agile to shifting market conditions, changing consumer expectations etc. Need to leverage real-time demand signals. Use machine learning to improve short-term forecast. Automatically integrate results into planning and execution systems.
+
+Signals:
+- Order/shipment history
+- Future orders (usually a few days in advance, but sometimes up to a month)
+- POS and customer inventory
+
+Feed to ensemble of ML and classical models to get weekly forecasts, then broken down into daily forecast.
+
+Benefits:
+- Increase revenue
+- Reduce costs
+- Improve customer service
+- Consumer satisfaction
+
+Weekly forecast Method:
+Input Data > Pre-process > Hierarchical time-series forecasting + ML forecasting > champion model > enhanced weekly forecast
+
+Daily forecast method:
+Enhanced weekly forecast > seasonal model, trend model, machine learning model > champion model > enhanced daily forecast
+
+ML weekly forecast:
+data > time-series forecast > NN(trend+predictions, product hierarchy, 1,2,3,4-year order lags): single hidden layer > time-series forecast on residuals, OR nothing > Forecast
+
+Data used for forecast comparison:
+- FC-Base forecast (base forecast that the CPG company uses, classical only)
+- FC-Base+Expert forecast (manually tweaked forecasts)
+
+Input data:
+- order history, pos, inventory (last 3 years)
+- future orders
+
+Split data into training/val/testing. Use validation data to choose the best model whenever there is a choice to make about that.
+
+
+Metrics:
+CPG company currently uses these metrics, so SAS uses the same metrics.
+
+Accuracy $$\left[1 - \frac{\sum_i |F_i - O_i|}{\sum F_i}\right] \times 100$$
+Bias $$\left[ 1 - \frac{\sum_i O_i}{\sum_i F_i}\right] \times 100 $$
+
+##### Weekly forecast accuracy
+
+Expert overrides help in short term (<= 4 weeks), but hinder in long term. The SAS forecasts are much better (+ ~6%) across all 8 lag periods.
+
+Bias metric is also better. CPG bias tends to be under forecasting. SAS is close to zero in lags 1-4, and positive for weeks 5-8.
+
+##### POS data
+Measured effect on accuracy of including POS data. Including POS + Inventory data increased accuracy by about 1%.
+
+Why not directly forecast at daily level?
+- very noisy
+- aggregating to weekly reduces these fluctuations
+
+Three methods are tried
+
+enhanced weekly forecast, order shipment history/future orders/pos data > long term seasonal model, short term trend model, machine learning model > champion model > get forecasts
+
+##### Short term trend model
+Look at daily proportions over last few weeks. Get average proportions then multiply out by weekly forecast. (have to be careful with outliers though)
+
+##### Long term seasonal model
+Look at long term three year period. Look at proportions for each year then multiply out by weekly forecasts.
+
+##### Machine learning based model
+NN that takes proportions from last 2 years and outputs proportions for now. Then multiply by weekly forecast.
+
+Shows that enhanced daily forecast is significantly more accurate (+30% accuracy) than the naive daily forecast (evenly distribute weekly forecast into days). Bias improves too. Enhanced forecasts remove a lot of bias and are generally close to 0.
+
+Nicely detailed talk :) 
+
+Q+A: 
+- Worked with 33,000 time series
+- Analysis + training time, then 2.5 to 3 hours (not sure if this includes training time), use high performance engines in SAS.
+- Did you have to handle new times series without past data? if so, how do you do this? In preprocessing stage did segmentation of time series. Some series did not have enough history - for these, just used classical models. [someone in comments suggested this is the ideal situation for global ml models]
+
+# Keynote: Arnold Zellner Memorial
+#### Andrew Harvey
+
+New class of time series models for predicting a variable which when cumulated is subject to an unknown saturation level. Very successful for forecasting covid cases in germany.
+
+These models are estimated by MLE.
+
+Not a compartmental model. Uses historical data to make predictions, rather than simulation.
+
+$y_T$ is daily number of new cases
+$Y_t$ is cumulative series, $y_t = Y_t - Y_{t-1}$. Don't model either of these directly. Instead the log of the growth rate of the cumulate series
+$ln g_t$ where $$g_t = y_t / Y_{t-1}$$
+
+That's just univariate time series, what about multivariate time series.
+
+Gompertz growth curve. Family of growth curves called 'generalized logistic'. Gompertz curve when $\kappa -> \infty$. 
+
+Didn't really follow this very well - but sounds like he had a good method for forecasting covid based on growth rates

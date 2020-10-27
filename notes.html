@@ -2079,6 +2079,61 @@ div.tocify {
 </div>
 </div>
 </div>
+<div id="practicioner-session-enhancing-shipment-forecast-for-cpg-companies-using-machine-learning-and-demand-sensing" class="section level1">
+<h1>Practicioner session: Enhancing shipment forecast for CPG companies using machine learning and demand sensing</h1>
+<div id="varun-valsaraj-sas-ai-center-of-excellence-kedar-prabhudesai-sas-ai-center-of-excellence" class="section level3">
+<h3>Varun Valsaraj (SAS AI Center of Excellence), Kedar Prabhudesai (SAS AI Center of Excellence)</h3>
+<div id="notes-19" class="section level4">
+<h4>Notes:</h4>
+<p>Forecasting shipments for CPG companies</p>
+<p>Challenge: Agile to shifting market conditions, changing consumer expectations etc. Need to leverage real-time demand signals. Use machine learning to improve short-term forecast. Automatically integrate results into planning and execution systems.</p>
+<p>Signals: - Order/shipment history - Future orders (usually a few days in advance, but sometimes up to a month) - POS and customer inventory</p>
+<p>Feed to ensemble of ML and classical models to get weekly forecasts, then broken down into daily forecast.</p>
+<p>Benefits: - Increase revenue - Reduce costs - Improve customer service - Consumer satisfaction</p>
+<p>Weekly forecast Method: Input Data &gt; Pre-process &gt; Hierarchical time-series forecasting + ML forecasting &gt; champion model &gt; enhanced weekly forecast</p>
+<p>Daily forecast method: Enhanced weekly forecast &gt; seasonal model, trend model, machine learning model &gt; champion model &gt; enhanced daily forecast</p>
+<p>ML weekly forecast: data &gt; time-series forecast &gt; NN(trend+predictions, product hierarchy, 1,2,3,4-year order lags): single hidden layer &gt; time-series forecast on residuals, OR nothing &gt; Forecast</p>
+<p>Data used for forecast comparison: - FC-Base forecast (base forecast that the CPG company uses, classical only) - FC-Base+Expert forecast (manually tweaked forecasts)</p>
+<p>Input data: - order history, pos, inventory (last 3 years) - future orders</p>
+<p>Split data into training/val/testing. Use validation data to choose the best model whenever there is a choice to make about that.</p>
+<p>Metrics: CPG company currently uses these metrics, so SAS uses the same metrics.</p>
+<p>Accuracy <span class="math display">\[\left[1 - \frac{\sum_i |F_i - O_i|}{\sum F_i}\right] \times 100\]</span> Bias <span class="math display">\[\left[ 1 - \frac{\sum_i O_i}{\sum_i F_i}\right] \times 100 \]</span></p>
+<div id="weekly-forecast-accuracy" class="section level5">
+<h5>Weekly forecast accuracy</h5>
+<p>Expert overrides help in short term (&lt;= 4 weeks), but hinder in long term. The SAS forecasts are much better (+ ~6%) across all 8 lag periods.</p>
+<p>Bias metric is also better. CPG bias tends to be under forecasting. SAS is close to zero in lags 1-4, and positive for weeks 5-8.</p>
+</div>
+<div id="pos-data" class="section level5">
+<h5>POS data</h5>
+<p>Measured effect on accuracy of including POS data. Including POS + Inventory data increased accuracy by about 1%.</p>
+<p>Why not directly forecast at daily level? - very noisy - aggregating to weekly reduces these fluctuations</p>
+<p>Three methods are tried</p>
+<p>enhanced weekly forecast, order shipment history/future orders/pos data &gt; long term seasonal model, short term trend model, machine learning model &gt; champion model &gt; get forecasts</p>
+</div>
+<div id="short-term-trend-model" class="section level5">
+<h5>Short term trend model</h5>
+<p>Look at daily proportions over last few weeks. Get average proportions then multiply out by weekly forecast. (have to be careful with outliers though)</p>
+</div>
+<div id="long-term-seasonal-model" class="section level5">
+<h5>Long term seasonal model</h5>
+<p>Look at long term three year period. Look at proportions for each year then multiply out by weekly forecasts.</p>
+</div>
+<div id="machine-learning-based-model" class="section level5">
+<h5>Machine learning based model</h5>
+<p>NN that takes proportions from last 2 years and outputs proportions for now. Then multiply by weekly forecast.</p>
+<p>Shows that enhanced daily forecast is significantly more accurate (+30% accuracy) than the naive daily forecast (evenly distribute weekly forecast into days). Bias improves too. Enhanced forecasts remove a lot of bias and are generally close to 0.</p>
+<p>Nicely detailed talk :)</p>
+<p>Q+A: - Worked with 33,000 time series - Analysis + training time, then 2.5 to 3 hours (not sure if this includes training time), use high performance engines in SAS. - Did you have to handle new times series without past data? if so, how do you do this? In preprocessing stage did segmentation of time series. Some series did not have enough history - for these, just used classical models. [someone in comments suggested this is the ideal situation for global ml models]</p>
+</div>
+</div>
+</div>
+</div>
+<div id="keynote-arnold-zellner-memorial" class="section level1">
+<h1>Keynote: Arnold Zellner Memorial</h1>
+<div id="andrew-harvey" class="section level4">
+<h4>Andrew Harvey</h4>
+</div>
+</div>
 
 
 
