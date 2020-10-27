@@ -2018,6 +2018,67 @@ div.tocify {
 </div>
 </div>
 </div>
+<div id="software-and-support-systems-i" class="section level1">
+<h1>Software and Support Systems I</h1>
+<div id="forecasting-website" class="section level3">
+<h3>Forecasting website</h3>
+<div id="andrey-vasnev" class="section level4">
+<h4>Andrey Vasnev</h4>
+</div>
+<div id="abstract-15" class="section level4">
+<h4>Abstract:</h4>
+<p>Forecastability builds confidence and certainty in the economy. Both individuals’ and organizations’ decision-making processes become more efficient, given a reliable and robust forecast of the economy. Inaccurate forecasts, whether they underestimate or overestimate, incur additional costs. Forecasts are therefore crucial for all economic and business activities. Forecasting accuracy, especially over longer horizons, is crucial for policymakers, institutions, and individuals.</p>
+<p>The purpose of this project is to produce a high-quality website that makes business forecasting accessible to the wider community. The goal is to make the website a default ‘go-to’ place for everyone who needs to predict common publicly available time series.</p>
+<p>The proposed publicly available forecasting website aims to implement both classical forecasting models as well as the novel models. The website will visualize and summarize the forecasting results in an easy-to-understand manner. Regular macroeconomic and financial forecasts will be produced on a quarterly and daily basis respectively.</p>
+<p>The Time Series and Forecasting group at the University of Sydney Business School has built a website, which is already operational and available at &lt;business-forecast-lab.com&gt;. We implemented daily automatically updated forecasts for major financial time series, including exchange rates, stock indices, and volatilities across different countries and markets. The models were implemented with Python, which is running on a server automatically every day.</p>
+</div>
+<div id="notes-16" class="section level4">
+<h4>Notes:</h4>
+<p>The current state: - lots of data available online - lots of forecasting methods freely available - performance of these methods is reliable - but it is difficult to get a current forecast of commonly used series</p>
+<p>The idea: - Create an open-source forecasting website</p>
+<p>See <a href="https://business-forecast-lab.com/" class="uri">https://business-forecast-lab.com/</a></p>
+<p>Uses python docker container with rpy2 for R packages. Updates data and forecasts once a day. Webserver uses gunicorn and plot.ly dash (so no javascript I think).</p>
+<p>Community sourced so open to suggestions</p>
+</div>
+</div>
+<div id="probabilistic-cross-temporal-hierarchies-in-fable" class="section level3">
+<h3>Probabilistic cross-temporal hierarchies in fable</h3>
+<div id="mitchel-ohara-wild" class="section level4">
+<h4>Mitchel O’Hara-Wild</h4>
+</div>
+<div id="abstract-16" class="section level4">
+<h4>Abstract:</h4>
+<p>The fable framework facilitates forecasting large collections of time series within a tidy data analysis workflow. The framework provides a carefully designed modelling interface which allows complex modelling tasks to be performed with minimal and readable code.</p>
+<p>Recent extensions allow fable to better handle time series that are observed frequently at various levels of a hierarchy. It is now possible use fable for constructing and reconciling temporal hierarchies, which is a technique well known to improve forecasting accuracy. Temporal reconciliation can also be used on an existing hierarchy to give cross-temporal reconciliation, all whilst producing density forecasts.</p>
+<p>This talk will demonstrate the latest fable features using a real forecasting problem. In particular, cross-temporal reconciliation will be used to produce coherent density forecasts using data observed at mixed temporal granularities.</p>
+</div>
+<div id="notes-17" class="section level4">
+<h4>Notes:</h4>
+<p>Fable builds on tsibble (also tsibbledata + feasts). A little intro to tsibble here.</p>
+<p>Temporaral reconciliation uses package called moment (for temporal granularities)</p>
+<p>Cross-temporal. Use <code>aggregate_key() %&gt;% aggregate_index()</code>.</p>
+<p><a href="https://slides.mitchelloharawild.com/isf2020/" class="uri">https://slides.mitchelloharawild.com/isf2020/</a></p>
+</div>
+</div>
+<div id="a-tool-to-detect-potential-data-leaks-in-forecasting-competitions" class="section level3">
+<h3>A tool to detect potential data leaks in forecasting competitions</h3>
+<div id="thiyanga-talagala" class="section level4">
+<h4>Thiyanga Talagala</h4>
+</div>
+<div id="abstract-17" class="section level4">
+<h4>Abstract:</h4>
+<p>Forecasting competitions are of increasing importance as a mean to learn best practices and gain knowledge. Data leakage is one of the most common issues that can often be found in competitions. Data leaks can happen when the training data contains information about the test data. There are a variety of different ways that data leaks can occur with time series data. For example: i) randomly chosen blocks of time series are concatenated to form a new time series, ii) scale-shifts, iii) repeating patterns in time series, iv) white noise is added in the original time series to form a new time series, etc. This work introduces a novel tool to detect these data leaks. The tsdataleaks package provides simple and computationally efficient algorithm to exploit data leaks in time series data. I will demonstrate the package design and its power to detect data leakages using recent forecasting competitions data.</p>
+</div>
+<div id="notes-18" class="section level4">
+<h4>Notes:</h4>
+<p>New R package: tsdataleaks</p>
+<p>Data leakage if one series is subset of another series. Examples of this from M1 and M4 competition.</p>
+<p>Algorithm to detect data leakage based on pearson’s correlation. Takes window of series and slides across other series to calculate correlations, looking for periods of very high correlations. Implemented in tsdataleaks.</p>
+<p>Main function is <code>find_dataleaks()</code>. A bit of explanation about how to use it. Can also determine reason in <code>reason_dataleaks()</code>.</p>
+<p>She didn’t check M5 as package not fast enough yet.</p>
+</div>
+</div>
+</div>
 
 
 
