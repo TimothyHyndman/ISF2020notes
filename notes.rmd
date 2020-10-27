@@ -376,3 +376,132 @@ Have data on
 
 
 Only have forecast for aggregate level + need to disaggregate to geographical areas = can use this method.
+
+# Keynote: Rob Hyndman
+
+### Ten years of forecast reconciliation
+
+#### Notes:
+
+##### Hierarchical forecasting 20 years ago
+In 1990s there were really three choices
+- Top down
+- Middle out
+- Bottom up
+
+Around 2001 had the idea to reconcile all forecasts using least squares optimization. Then 2004 had PhD student to start working on it with postdoc (George). Presentation at ISF 2006, pre-print paper in 2007. Application to Australian tourism data in 2009. First version of hts package on CRAN 2010. 2011 until paper finally appeared.
+
+Subject has really taken off in the last 10 years.
+
+##### Point forecast reconciliation
+Can have 
+- Hierarchical series
+- Grouped series
+
+eg tourism by state and purpose of travel (order doesn't matter so grouped)
+
+Can always write as
+
+$$y_t = S b_t$$
+
+$y_t$ is vector of all series
+$b_t$ vector of most disaggregated series
+$S$ summing matrix containing linear constraints
+
+Reconciliation is mapping from $\mathbb{R}^n$ to a coherent subspace. Almost all of the work is about linear reconciliation (the mapping is linear).
+
+$$\tilde{y} = S G \hat{y}$$
+
+In this scenario you can show that reconciled forecasts are unbiased, and get an expression for the variance.
+
+Minimum trace (MinT) reconciliation - trace of variances is minimized for a know expression. 
+
+Hard to calculate this expression. There are a bunch of estimates for this (both for MinT and for OLS and WLS). 
+
+##### Example: Australian tourism
+All methods give better accuracy than base forecasts. Can't use mint_cov for lots of series! Improvements greater at lower levels
+
+##### Probabilistic forecast reconciliation
+What does it mean for a probabilistic forecast to be reconciled? 
+- The reconciled multivariate density must lie on the coherent subspace.
+
+Two results:
+
+- If the incoherent base forecasts are normal, then the reconciled density is normal (with given mean and variance).
+- Can reconcile sample paths to get a reconciled distribution
+
+Difficult to evaluate probabilistic forecasts in a way that works - needs to use a proper scoring rule (eg pinball loss but integrated over all possibilities). Eg shouldn't use log score because it's not proper
+
+Proper = minimized when you have the 'truth'.
+
+Energy score is proper (but you have to use FULL hierarchy).
+
+Have to optimize $G$ to optimize Energy score now, instead of using MinT. 
+
+##### Example
+Energy forecasting. Interested in probabilistic because of extreme tail events. Use simple feed forward NN to forecast. Residuals are non-gaussian. Strong correlations between some residuals.
+
+Computed mean energy score using 4 different assumptions on residuals (gaussian/dependence). Used a bunch of different methods. SKipped over the results.
+
+##### Extensions
+What else have people done in this space?
+
+- $S$ matrix can have any values, not just 0 and 1
+- Linear regression + reconciliation can be done in one go.
+- Non negative reconciliation
+- Temporal reconciliation + cross-temporal reconciliation
+- Bayesian forecast reconciliation
+- ML and regularization
+
+
+# Keynote: Best practices for forecasting at scale
+#### Ginger Holt (Manager, Infrastructure Data Science Facebook) and Italo Lima (Data Scientist, Infrastructure Data Science Facebook). 
+
+#### Notes:
+
+##### Organizational Challenges
+Infrastructure Data Science (IDS)
+
+- Accuracy isn't always what they want
+- Series have different levels of volatility
+- Recruiting. They recruit generalists, need technical skills + cross-functional ability. Non-ML emphasis.
+
+Resource Allocation
+- Data storage (need to store forecasts + actuals all the time so can evaluate accuracy later)
+- Tooling - automation, fast computation, parallelization, customization, visualization.
+
+- Emphasis on documentation
+- people have major and minor areas of focus
+
+A lot of fluff talked about here without much of substance.
+
+##### Practical Challenges
+
+- Onboarding forecasts
+- Data QC
+- Model selection
+- Forecast publication/presentation
+- Automatic monitoring
+
+##### Technical Challenges
+
+- Holidays and special events: peak prediction. Hard to forecast directly. Use two methods, overall prediction, and then separate prediction for peaks.
+- Prediction intervals / uncertainty intervals: periodically refresh the forecast and keep a close eye on error monitoring (lots of error metrics). 
+- Hierarchical reconcilation: Multiple FB products, geographical changes (lower levels are noisy)
+- Temporal reconciliation
+- Model comparison: use many related forecasts for comparison. Depends a lot on which metric they are optimising for.
+- Hyperparameter tuning: manually set parameteers (i.e. not trained). Prophet has 15 hyper parameters for trend, seasonality, simulation
+
+To find them Create a good API
+- Set evaluation function
+- Create a search agent
+- Either grid search, or some version of random search
+
+"Self-supervised learning for fast and scalable time-series hypterparameter tuning" - Xiaodong Jiang, Peiyi Zhang, et al.
+Model selection with self-supervised learning
+
+Tooling: 
+
+##### Solutions
+##### Q&A
+

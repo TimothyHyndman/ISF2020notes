@@ -1902,6 +1902,122 @@ div.tocify {
 </div>
 </div>
 </div>
+<div id="keynote-rob-hyndman" class="section level1">
+<h1>Keynote: Rob Hyndman</h1>
+<div id="ten-years-of-forecast-reconciliation" class="section level3">
+<h3>Ten years of forecast reconciliation</h3>
+<div id="notes-14" class="section level4">
+<h4>Notes:</h4>
+<div id="hierarchical-forecasting-20-years-ago" class="section level5">
+<h5>Hierarchical forecasting 20 years ago</h5>
+<p>In 1990s there were really three choices - Top down - Middle out - Bottom up</p>
+<p>Around 2001 had the idea to reconcile all forecasts using least squares optimization. Then 2004 had PhD student to start working on it with postdoc (George). Presentation at ISF 2006, pre-print paper in 2007. Application to Australian tourism data in 2009. First version of hts package on CRAN 2010. 2011 until paper finally appeared.</p>
+<p>Subject has really taken off in the last 10 years.</p>
+</div>
+<div id="point-forecast-reconciliation" class="section level5">
+<h5>Point forecast reconciliation</h5>
+<p>Can have - Hierarchical series - Grouped series</p>
+<p>eg tourism by state and purpose of travel (order doesn’t matter so grouped)</p>
+<p>Can always write as</p>
+<p><span class="math display">\[y_t = S b_t\]</span></p>
+<p><span class="math inline">\(y_t\)</span> is vector of all series <span class="math inline">\(b_t\)</span> vector of most disaggregated series <span class="math inline">\(S\)</span> summing matrix containing linear constraints</p>
+<p>Reconciliation is mapping from <span class="math inline">\(\mathbb{R}^n\)</span> to a coherent subspace. Almost all of the work is about linear reconciliation (the mapping is linear).</p>
+<p><span class="math display">\[\tilde{y} = S G \hat{y}\]</span></p>
+<p>In this scenario you can show that reconciled forecasts are unbiased, and get an expression for the variance.</p>
+<p>Minimum trace (MinT) reconciliation - trace of variances is minimized for a know expression.</p>
+<p>Hard to calculate this expression. There are a bunch of estimates for this (both for MinT and for OLS and WLS).</p>
+</div>
+<div id="example-australian-tourism" class="section level5">
+<h5>Example: Australian tourism</h5>
+<p>All methods give better accuracy than base forecasts. Can’t use mint_cov for lots of series! Improvements greater at lower levels</p>
+</div>
+<div id="probabilistic-forecast-reconciliation" class="section level5">
+<h5>Probabilistic forecast reconciliation</h5>
+<p>What does it mean for a probabilistic forecast to be reconciled? - The reconciled multivariate density must lie on the coherent subspace.</p>
+<p>Two results:</p>
+<ul>
+<li>If the incoherent base forecasts are normal, then the reconciled density is normal (with given mean and variance).</li>
+<li>Can reconcile sample paths to get a reconciled distribution</li>
+</ul>
+<p>Difficult to evaluate probabilistic forecasts in a way that works - needs to use a proper scoring rule (eg pinball loss but integrated over all possibilities). Eg shouldn’t use log score because it’s not proper</p>
+<p>Proper = minimized when you have the ‘truth’.</p>
+<p>Energy score is proper (but you have to use FULL hierarchy).</p>
+<p>Have to optimize <span class="math inline">\(G\)</span> to optimize Energy score now, instead of using MinT.</p>
+</div>
+<div id="example" class="section level5">
+<h5>Example</h5>
+<p>Energy forecasting. Interested in probabilistic because of extreme tail events. Use simple feed forward NN to forecast. Residuals are non-gaussian. Strong correlations between some residuals.</p>
+<p>Computed mean energy score using 4 different assumptions on residuals (gaussian/dependence). Used a bunch of different methods. SKipped over the results.</p>
+</div>
+<div id="extensions" class="section level5">
+<h5>Extensions</h5>
+<p>What else have people done in this space?</p>
+<ul>
+<li><span class="math inline">\(S\)</span> matrix can have any values, not just 0 and 1</li>
+<li>Linear regression + reconciliation can be done in one go.</li>
+<li>Non negative reconciliation</li>
+<li>Temporal reconciliation + cross-temporal reconciliation</li>
+<li>Bayesian forecast reconciliation</li>
+<li>ML and regularization</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="keynote-best-practices-for-forecasting-at-scale" class="section level1">
+<h1>Keynote: Best practices for forecasting at scale</h1>
+<div id="ginger-holt-manager-infrastructure-data-science-facebook-and-italo-lima-data-scientist-infrastructure-data-science-facebook." class="section level4">
+<h4>Ginger Holt (Manager, Infrastructure Data Science Facebook) and Italo Lima (Data Scientist, Infrastructure Data Science Facebook).</h4>
+</div>
+<div id="notes-15" class="section level4">
+<h4>Notes:</h4>
+<div id="organizational-challenges" class="section level5">
+<h5>Organizational Challenges</h5>
+<p>Infrastructure Data Science (IDS)</p>
+<ul>
+<li>Accuracy isn’t always what they want</li>
+<li>Series have different levels of volatility</li>
+<li>Recruiting. They recruit generalists, need technical skills + cross-functional ability. Non-ML emphasis.</li>
+</ul>
+<p>Resource Allocation - Data storage (need to store forecasts + actuals all the time so can evaluate accuracy later) - Tooling - automation, fast computation, parallelization, customization, visualization.</p>
+<ul>
+<li>Emphasis on documentation</li>
+<li>people have major and minor areas of focus</li>
+</ul>
+<p>A lot of fluff talked about here without much of substance.</p>
+</div>
+<div id="practical-challenges" class="section level5">
+<h5>Practical Challenges</h5>
+<ul>
+<li>Onboarding forecasts</li>
+<li>Data QC</li>
+<li>Model selection</li>
+<li>Forecast publication/presentation</li>
+<li>Automatic monitoring</li>
+</ul>
+</div>
+<div id="technical-challenges" class="section level5">
+<h5>Technical Challenges</h5>
+<ul>
+<li>Holidays and special events: peak prediction. Hard to forecast directly. Use two methods, overall prediction, and then separate prediction for peaks.</li>
+<li>Prediction intervals / uncertainty intervals: periodically refresh the forecast and keep a close eye on error monitoring (lots of error metrics).</li>
+<li>Hierarchical reconcilation: Multiple FB products, geographical changes (lower levels are noisy)</li>
+<li>Temporal reconciliation</li>
+<li>Model comparison: use many related forecasts for comparison. Depends a lot on which metric they are optimising for.</li>
+<li>Hyperparameter tuning: manually set parameteers (i.e. not trained). Prophet has 15 hyper parameters for trend, seasonality, simulation</li>
+</ul>
+<p>To find them Create a good API - Set evaluation function - Create a search agent - Either grid search, or some version of random search</p>
+<p>“Self-supervised learning for fast and scalable time-series hypterparameter tuning” - Xiaodong Jiang, Peiyi Zhang, et al. Model selection with self-supervised learning</p>
+<p>Tooling:</p>
+</div>
+<div id="solutions" class="section level5">
+<h5>Solutions</h5>
+</div>
+<div id="qa" class="section level5">
+<h5>Q&amp;A</h5>
+</div>
+</div>
+</div>
 
 
 
