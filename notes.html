@@ -2132,6 +2132,68 @@ div.tocify {
 <h1>Keynote: Arnold Zellner Memorial</h1>
 <div id="andrew-harvey" class="section level4">
 <h4>Andrew Harvey</h4>
+<p>New class of time series models for predicting a variable which when cumulated is subject to an unknown saturation level. Very successful for forecasting covid cases in germany.</p>
+<p>These models are estimated by MLE.</p>
+<p>Not a compartmental model. Uses historical data to make predictions, rather than simulation.</p>
+<p><span class="math inline">\(y_T\)</span> is daily number of new cases <span class="math inline">\(Y_t\)</span> is cumulative series, <span class="math inline">\(y_t = Y_t - Y_{t-1}\)</span>. Don’t model either of these directly. Instead the log of the growth rate of the cumulate series <span class="math inline">\(ln g_t\)</span> where <span class="math display">\[g_t = y_t / Y_{t-1}\]</span></p>
+<p>That’s just univariate time series, what about multivariate time series.</p>
+<p>Gompertz growth curve. Family of growth curves called ‘generalized logistic’. Gompertz curve when <span class="math inline">\(\kappa -&gt; \infty\)</span>.</p>
+<p>Didn’t really follow this very well - but sounds like he had a good method for forecasting covid based on growth rates</p>
+</div>
+</div>
+<div id="practitioner-session-consolidated-framework-for-forecast-generation-and-evaluation" class="section level1">
+<h1>Practitioner session: Consolidated framework for forecast generation and evaluation</h1>
+<div id="chris-fry-data-science-manager-google-casey-lichtendahl-visiting-researcher-google" class="section level4">
+<h4>Chris Fry (Data Science Manager Google), Casey Lichtendahl (Visiting researcher google)</h4>
+<ul>
+<li>Automated many steps of design generation and monitoring of time series forecasting</li>
+<li>use nested cross validation for generating and evaluating</li>
+<li>run jobs in parallel</li>
+<li>evaluate point and quantile forecasts with 30+ metrics in five categories at various horizons and levels of hierarchy</li>
+</ul>
+<p>Tend to set capacity at 95 percentile.</p>
+<p>Have lots of time series arranged in a hierarchy. e.g. Fleet &gt; search, cloud, youtube &gt; region &gt; zone.</p>
+<div id="nested-cross-validation" class="section level5">
+<h5>Nested cross validation</h5>
+<p>To evaluate, they use a sequence of backtests. To generate prediction intervals, use empirical error distributions from another sequence of backtests inside each training set</p>
+</div>
+<div id="parallelization" class="section level5">
+<h5>Parallelization</h5>
+<p>Thousands of time series, lots of backtests, lots of challenger models. Can parallelize over none, some, or all of these dimensions.</p>
+<p>Use flume and beam. Similar to google’s dataflow plus apache beam.</p>
+<p>Inner loop - Generate point forecasts (Series, backtests, models) - Reconcile point forecasts and record forecasting errors - Fit cones to empirical error distributions</p>
+<p>Reconciliation not parallizable.</p>
+<p>Reconcile with MinT or similar. Use in-sample fitted values to calculate projection matrix. Would be an issue for complex ML models… but issue for another time.</p>
+<p>From each of your backtests, you get a bunch of 1-step, 2-step etc forecasts.. You can use prediction errors on the validation set to get empirical distributions for forecasts errors at each step.</p>
+</div>
+<div id="detailed-talks" class="section level5">
+<h5>detailed talks</h5>
+<p>Haoyun Wu - ml models Weijie Shen - reconciliation Kashif Yousuf… - empirical distributions for cones Sercan Arik - temporal fusion ….</p>
+</div>
+<div id="evaluation-metrics" class="section level5">
+<h5>Evaluation metrics</h5>
+<ul>
+<li>Accuracy (MSE)</li>
+<li>Bias (ME)</li>
+<li>Error variance (SDE)</li>
+<li>Accuracy risk (variability in an accuracy metric over multiple forecasts)</li>
+<li>Stability (degree to which forecasts remain unchanged subject to minor variations in the underlying data).</li>
+</ul>
+<p>Example of two models with similar accuracy, but one is biased with low error variance (often can be fixed).</p>
+<p>Put all of these metrics in a table with comparisons to standard models too (ETS + ARIMA).</p>
+<p>Some example metrics RMSE, MAE, MAPE, RMSLE WMAPE ME, MPE, WMPE, MLE? SE SPE WSPE SAPE WSAPE MPC WMPC PPLq CRPS WCoverage-q accuracy risk WSPPL stability MPC WMPC</p>
+<p>You can monitor these metrics over time, and across forecast horizons, and across hierarchical levels.</p>
+<p>His vision of where things are going at google: classical time series models &gt; increased reliance on ML models borg/flume &gt; tfx pipeline python/c++ &gt; tensorflow post-process reconciliation &gt; peri-process reconciliation post-process empirical PIs &gt; peri-process PIs</p>
+<p>Open source tools</p>
+<p>Tensorflow probability - bayesian structural time series tensorflow - deep learning models temporal fusion transformers kubeflow for deploying and managing ML time series forecasting pipelines</p>
+<p>BigQueryARIMA - forecast directly in SQL. AutoML tables - auto ml for structured data demand AI - retail forecasting tool</p>
+</div>
+<div id="qa-1" class="section level5">
+<h5>Q+A</h5>
+<ul>
+<li>Why use empirical PI instead of using pinball loss. They find that using pinball loss doesn’t give very good distributions.</li>
+</ul>
+</div>
 </div>
 </div>
 

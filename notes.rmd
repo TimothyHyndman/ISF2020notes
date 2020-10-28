@@ -673,3 +673,91 @@ That's just univariate time series, what about multivariate time series.
 Gompertz growth curve. Family of growth curves called 'generalized logistic'. Gompertz curve when $\kappa -> \infty$. 
 
 Didn't really follow this very well - but sounds like he had a good method for forecasting covid based on growth rates
+
+
+# Practitioner session: Consolidated framework for forecast generation and evaluation
+
+#### Chris Fry (Data Science Manager Google), Casey Lichtendahl (Visiting researcher google)
+
+- Automated many steps of design generation and monitoring of time series forecasting
+- use nested cross validation for generating and evaluating
+- run jobs in parallel
+- evaluate point and quantile forecasts with 30+ metrics in five categories at various horizons and levels of hierarchy
+
+Tend to set capacity at 95 percentile.
+
+Have lots of time series arranged in a hierarchy. e.g. Fleet > search, cloud, youtube > region > zone.
+
+##### Nested cross validation
+To evaluate, they use a sequence of backtests. 
+To generate prediction intervals, use empirical error distributions from another sequence of backtests inside each training set
+
+##### Parallelization
+Thousands of time series, lots of backtests, lots of challenger models. Can parallelize over none, some, or all of these dimensions.
+
+Use flume and beam. Similar to google's dataflow plus apache beam.
+
+Inner loop
+- Generate point forecasts (Series, backtests, models)
+- Reconcile point forecasts and record forecasting errors
+- Fit cones to empirical error distributions
+
+Reconciliation not parallizable.
+
+Reconcile with MinT or similar. Use in-sample fitted values to calculate projection matrix. Would be an issue for complex ML models... but issue for another time.
+
+From each of your backtests, you get a bunch of 1-step, 2-step etc forecasts.. You can use prediction errors on the validation set to get empirical distributions for forecasts errors at each step.
+
+##### detailed talks
+Haoyun Wu - ml models
+Weijie Shen - reconciliation
+Kashif Yousuf... - empirical distributions for cones
+Sercan Arik - temporal fusion ....
+
+##### Evaluation metrics
+
+- Accuracy (MSE)
+- Bias (ME)
+- Error variance (SDE)
+- Accuracy risk (variability in an accuracy metric over multiple forecasts)
+- Stability (degree to which forecasts remain unchanged subject to minor variations in the underlying data).
+
+Example of two models with similar accuracy, but one is biased with low error variance (often can be fixed).
+
+Put all of these metrics in a table with comparisons to standard models too (ETS + ARIMA).
+
+Some example metrics
+RMSE, MAE, MAPE, RMSLE WMAPE
+ME, MPE, WMPE, MLE?
+SE SPE WSPE
+SAPE WSAPE
+MPC WMPC
+PPLq CRPS
+WCoverage-q
+accuracy risk WSPPL
+stability MPC WMPC
+
+You can monitor these metrics over time, and across forecast horizons, and across hierarchical levels.
+
+His vision of where things are going at google:
+classical time series models > increased reliance on ML models
+borg/flume > tfx pipeline
+python/c++ > tensorflow
+post-process reconciliation > peri-process reconciliation
+post-process empirical PIs > peri-process PIs
+
+
+Open source tools
+
+Tensorflow probability - bayesian structural time series
+tensorflow - deep learning models
+temporal fusion transformers
+kubeflow for deploying and managing ML time series forecasting pipelines
+
+BigQueryARIMA - forecast directly in SQL. 
+AutoML tables - auto ml for structured data
+demand AI - retail forecasting tool
+
+##### Q+A
+
+- Why use empirical PI instead of using pinball loss. They find that using pinball loss doesn't give very good distributions.
