@@ -5,10 +5,9 @@ date: "26/10/2020"
 output: 
   html_document:
     toc: true
-    toc_depth: 2
-    toc_float: true
+    toc_depth: 3
+    toc_float: false
     collapsed: false
-    smooth_scroll: true
 ---
 
 ```{r setup, include=FALSE}
@@ -454,7 +453,8 @@ What else have people done in this space?
 - ML and regularization
 
 
-# Keynote: Best practices for forecasting at scale
+# Keynote: Facebook
+### Best practices for forecasting at scale
 #### Ginger Holt (Manager, Infrastructure Data Science Facebook) and Italo Lima (Data Scientist, Infrastructure Data Science Facebook). 
 
 #### Notes:
@@ -506,7 +506,7 @@ Tooling:
 ##### Q&A
 
 
-# Software and Support Systems I
+# Session: Software and Support Systems I
 
 ### Forecasting website
 #### Andrey Vasnev
@@ -571,10 +571,9 @@ Main function is `find_dataleaks()`. A bit of explanation about how to use it. C
 She didn't check M5 as package not fast enough yet.
 
 
-# Practicioner session: Enhancing shipment forecast for CPG companies using machine learning and demand sensing
-
-### Varun Valsaraj (SAS AI Center of Excellence), Kedar Prabhudesai (SAS AI Center of Excellence)
-
+# Keynote: SAS
+### Enhancing shipment forecast for CPG companies using machine learning and demand sensing
+#### Varun Valsaraj (SAS AI Center of Excellence), Kedar Prabhudesai (SAS AI Center of Excellence)
 #### Notes:
 
 Forecasting shipments for CPG companies
@@ -675,7 +674,9 @@ Gompertz growth curve. Family of growth curves called 'generalized logistic'. Go
 Didn't really follow this very well - but sounds like he had a good method for forecasting covid based on growth rates
 
 
-# Practitioner session: Consolidated framework for forecast generation and evaluation
+# Keynote: Google
+
+### Consolidated framework for forecast generation and evaluation
 
 #### Chris Fry (Data Science Manager Google), Casey Lichtendahl (Visiting researcher google)
 
@@ -761,3 +762,28 @@ demand AI - retail forecasting tool
 ##### Q+A
 
 - Why use empirical PI instead of using pinball loss. They find that using pinball loss doesn't give very good distributions.
+
+# Session: Forecast evaluation III
+### Learnings from M5 competition for intermittent forecasting
+#### P.K.S Prakash
+#### Abstract:
+The main purpose of this abstract is to outline the key learnings from competing in the recently completed 5th edition of M-competition. The authors method was ranked among top 1% of the 5000+ competitors in M5 competition. The key learnings includes: (1) Simple methods outperform complex methods even in machine learning, (2) More data may not necessarily help improving accuracy of forecasting (3) Temporal aggregation for intermittent series did not perform well, on the contrary (4) ensembling diverse models worked well (5) Forecasting is not a regression problem, it can be formulated as a classification problem (6) Intermittency leads to under or overestimation across different levels of the hierarchical forecast (7) Forecasters past success in competitions is not a good predictor of future success (8) Easy to overfit time series forecasting problems (9) Handling uncertainty in making point predictions is crucial. When uncertain combine diverse models and avoid cognitive bias. In this presentation, the authors will demonstrate the above learning using empirical data from M5 competition.
+#### Notes:
+All the top results were LGBM and pretty simple. Used magic multipliers to counter over-forecasting/under-forecasting but best multiplier for validation was 1.06 and best for test for 0.96 so no consistent bias in either direction. And if you can't tell which it is it's all blind luck isn't it... an unsatisfying explanation.
+
+# Session: Exponential smoothing
+
+### Seasonal vector exponential smoothing model taxonomy using cross-sectional information
+#### Huijing Chen
+#### Abstract:
+In the context of short-term demand forecasting, businesses are often required to forecast the demand of seasonal products, based on very few complete seasonal cycles of data. This makes the forecasting task difficult, but one possible solution is to make use of the readily available cross-sectional information from a homogeneous group. For example, a product family may contain essentially the same product with many variations such as size or colour. It is reasonable to assume that seasonality is common within the family and can thus be estimated using the cross-sectional information. In this research, we propose a framework based on vector exponential smoothing (VES), and provide a conceptual contribution by devising a taxonomy of seasonal VES models, bringing together the factors of seasonal components, smoothing parameters and initial seasonal indices. Experiments with artificially generated data and empirical findings will be discussed to assess the performance of the methods derived from this taxonomy, and provide insights on the impact on forecasting from improved efficiency on estimation of components.
+
+#### Notes:
+ Difficult to estimate seasonality with short data history eg retail. But might have multiple products with similar seasonal patterns.
+ So could potentially exploit this seasonality. 
+ 
+ Vector exponential smoothing (VES)
+ 
+ not really sure what the model is
+ 
+
