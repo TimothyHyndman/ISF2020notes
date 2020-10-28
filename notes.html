@@ -472,6 +472,9 @@ summary {
 <li><a href="#keynote-thordis-l.-thorarinsdottir">Keynote: Thordis L. Thorarinsdottir</a><ul>
 <li><a href="#from-weather-to-climate-predictions">From weather to climate predictions</a></li>
 </ul></li>
+<li><a href="#keynote-uber">Keynote: Uber</a><ul>
+<li><a href="#probabilistic-forecasting-with-pyro">Probabilistic forecasting with Pyro</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -1240,6 +1243,63 @@ summary {
 <li>consider multiple “truths”</li>
 <li>work with anomolies</li>
 </ul>
+</div>
+</div>
+</div>
+<div id="keynote-uber" class="section level1">
+<h1>Keynote: Uber</h1>
+<div id="probabilistic-forecasting-with-pyro" class="section level2">
+<h2>Probabilistic forecasting with Pyro</h2>
+<div id="edwin-ng-senior-data-scientist-uber-fritz-obermeyer-senior-research-scientist" class="section level3">
+<h3>Edwin Ng (Senior Data Scientist, Uber), Fritz Obermeyer (Senior Research Scientist)</h3>
+</div>
+<div id="notes-25" class="section level3">
+<h3>Notes:</h3>
+<p>Pyro is deep probabilistic programming language (uses deep neural networks)</p>
+<div id="what-is-deep-prob-programming" class="section level4">
+<h4>what is deep prob programming</h4>
+<p>probabilistic model - essentially a bayesian model. - express prior knowledge - incorporate noisy data - handles uncertainty - fusing data? Modelling separate from inference, models interpretable.</p>
+<p>history - models were bayesian networks - inference MCMC. Works on almost anything but can be slow and scales poorly - inference variational inference. limiated to conjugate models, hard maths - custom inference. fragile to model changes</p>
+<p>Can we combine NN with probabilistic models?</p>
+<p>Library options: Pyro/PyTorch, NumPyro/JAX, Edward/Tensorflow</p>
+</div>
+<div id="what-is-pyro" class="section level4">
+<h4>what is pyro</h4>
+<p>eg</p>
+<pre><code>x = pyro.sample(&quot;x&quot;, Bernoulli(0.5))
+assert isinstance(x, torch.Tensor)
+
+pyro.sample(&quot;y&quot;, Normal(x, 1.), obs=y)
+
+# Declare learnable parameter
+theta = pyro.param(&quot;theta&quot;, torch.ones(100), constraint=positive)
+
+with pyro.plate(&quot;data&quot;, len(data), ...) as i:
+  # parallelized loop</code></pre>
+<p>pyro models are python functions</p>
+<ul>
+<li>composable</li>
+<li>expressive</li>
+</ul>
+</div>
+<div id="how-to-use-for-forecasting" class="section level4">
+<h4>how to use for forecasting</h4>
+<p>checkout <a href="https://pyro.ai/time" class="uri">https://pyro.ai/time</a> for some examples</p>
+</div>
+<div id="orbit" class="section level4">
+<h4>Orbit</h4>
+<p>Package built on top of Pyro.</p>
+<p>Object-oRiented BayesIan Time-series</p>
+<ul>
+<li>LGT (local and global trend)</li>
+<li>DLT (dampled local trend)</li>
+</ul>
+<p>similar models to ETS state space models</p>
+<p>Orbit tried on M5 but didn’t take advantage of hierarchy.</p>
+<ul>
+<li>Stan slower but more accurate because it uses MCMC. Pyro uses Pytorch for variational inference. Pyro much better for larger data.</li>
+</ul>
+</div>
 </div>
 </div>
 </div>

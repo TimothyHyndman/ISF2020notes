@@ -868,3 +868,68 @@ How to evaluate climate predictions/projections?
 - consider multiple "truths"
 - work with anomolies
 
+# Keynote: Uber
+## Probabilistic forecasting with Pyro
+### Edwin Ng (Senior Data Scientist, Uber), Fritz Obermeyer (Senior Research Scientist)
+### Notes:
+
+Pyro is deep probabilistic programming language (uses deep neural networks)
+
+#### what is deep prob programming
+
+probabilistic model - essentially a bayesian model.
+- express prior knowledge
+- incorporate noisy data
+- handles uncertainty
+- fusing data?
+Modelling separate from inference, models interpretable.
+
+history
+- models were bayesian networks
+- inference MCMC. Works on almost anything but can be slow and scales poorly
+- inference variational inference. limiated to conjugate models, hard maths
+- custom inference. fragile to model changes
+
+Can we combine NN with probabilistic models?
+
+Library options:
+Pyro/PyTorch, NumPyro/JAX, Edward/Tensorflow
+
+#### what is pyro
+eg
+```
+x = pyro.sample("x", Bernoulli(0.5))
+assert isinstance(x, torch.Tensor)
+
+pyro.sample("y", Normal(x, 1.), obs=y)
+
+# Declare learnable parameter
+theta = pyro.param("theta", torch.ones(100), constraint=positive)
+
+with pyro.plate("data", len(data), ...) as i:
+  # parallelized loop
+```
+
+pyro models are python functions
+
+- composable
+- expressive
+
+#### how to use for forecasting
+
+checkout https://pyro.ai/time for some examples
+
+#### Orbit
+
+Package built on top of Pyro.
+
+Object-oRiented BayesIan Time-series
+
+- LGT (local and global trend)
+- DLT (dampled local trend)
+
+similar models to ETS state space models
+
+Orbit tried on M5 but didn't take advantage of hierarchy.
+
+- Stan slower but more accurate because it uses MCMC. Pyro uses Pytorch for variational inference. Pyro much better for larger data.
