@@ -437,7 +437,7 @@ summary {
 <li><a href="#a-geometry-inspired-hierarchical-forecasting-methodology">A geometry inspired hierarchical forecasting methodology</a></li>
 <li><a href="#dont-evaluate-coherent-hierarchical-forecasts-using-the-mape">Don’t evaluate coherent hierarchical forecasts using the MAPE!</a></li>
 <li><a href="#optimal-top-down-hierarchical-forecast-reconciliation">Optimal Top-Down Hierarchical Forecast Reconciliation</a></li>
-<li><a href="#gravitational-forecast-reconciliation">GRAVITATIONAL FORECAST RECONCILIATION</a></li>
+<li><a href="#gravitational-forecast-reconciliation">Gravitational forecast reconciliation</a></li>
 </ul></li>
 <li><a href="#keynote-rob-hyndman">Keynote: Rob Hyndman</a><ul>
 <li><a href="#ten-years-of-forecast-reconciliation">Ten years of forecast reconciliation</a></li>
@@ -468,17 +468,17 @@ summary {
 
 <div id="session-global-modelling-for-forecasting" class="section level1">
 <h1>Session: Global Modelling for Forecasting</h1>
-<div id="transfer-learning-schemes-for-global-forecasting-models-using-recurrent-neural-networks" class="section level3">
-<h3>Transfer learning schemes for global forecasting models using recurrent neural networks</h3>
-<div id="kasun-bandara" class="section level4">
-<h4>Kasun Bandara</h4>
+<div id="transfer-learning-schemes-for-global-forecasting-models-using-recurrent-neural-networks" class="section level2">
+<h2>Transfer learning schemes for global forecasting models using recurrent neural networks</h2>
+<div id="kasun-bandara" class="section level3">
+<h3>Kasun Bandara</h3>
 </div>
-<div id="abstract" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract" class="section level3">
+<h3>Abstract:</h3>
 <p>Forecasting models that are trained across a set of many time series, known as Global Forecasting Models (GFM), have shown recently promising results in forecasting competitions and real-world applications, outperforming many state-of-the-art univariate forecasting techniques. In most cases, GFMs are implemented using deep neural networks, and in particular Recurrent Neural Networks (RNN) that require sufficient amounts of time series to estimate their numerous model parameters. Many time series databases however suffer from having only a limited number of time series. The transfer learning (TL) methodology has been proposed to overcome the limitation of training data by enabling knowledge transfer from models trained on a source task with sufficient amount of training data to a target task with few training instances. Although several studies have been conducted to forecast better under these circumstances, how to accurately forecast with GFMs in a situation with less data has not yet been thoroughly studied. To alleviate this problem, in this study, we investigate to what extent the TL methodology is useful, when using RNNs for GFM training. We propose a Residual RNN stacking architecture, supplemented by various TL schemes to overcome the challenges of time series sparsity, when developing GFMs. Using a comprehensive model training plan, we demonstrate the effectiveness of our proposed TL schemes for leveraging the capabilities of GFMs to forecast with a limited amount of time series. Furthermore, in a situation where time series data is not available to build a pre-trained model for knowledge transfer, we use GRATIS, a statistical generative model that artificially generates time series with diverse characteristics. In our evaluation on the kaggle web traffic forecasting challenge dataset, our proposed TL schemes are able to improve the baseline accuracy of GFM models, and outperform state-of-the-art univariate forecasting methods. The results also indicate that our approach can be operated to improve the forecasting accuracy, even in the presence of a single time series.</p>
 </div>
-<div id="notes" class="section level4">
-<h4>Notes:</h4>
+<div id="notes" class="section level3">
+<h3>Notes:</h3>
 <ul>
 <li>Global model: learns parameters from all series</li>
 <li>Don’t perform so well if you don’t have much data. How do you deal with this?</li>
@@ -501,18 +501,18 @@ summary {
 <p>Summary: Can still use RNNs without big data if you can augment your data (and maybe do some transfer learning?). The best methods are DBA and STL+MBB. Still depends on the data as to whether you can outperform statistical methods.</p>
 </div>
 </div>
-<div id="automatic-feature-based-forecast-model-averaging" class="section level3">
-<h3>Automatic feature-based forecast model averaging</h3>
-<div id="alexey-chernikov" class="section level4">
-<h4>Alexey Chernikov</h4>
+<div id="automatic-feature-based-forecast-model-averaging" class="section level2">
+<h2>Automatic feature-based forecast model averaging</h2>
+<div id="alexey-chernikov" class="section level3">
+<h3>Alexey Chernikov</h3>
 </div>
-<div id="abstract-1" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-1" class="section level3">
+<h3>Abstract:</h3>
 <p>Time series features are widely used in Big Data environments due to their capabilities in noise reduction, dimensionality reduction, and capturing relevant information of an object. Their use in time series classification achieves state-of-the-art accuracy and has become a de-facto standard. In forecasting, recent studies also demonstrate that time series features are able to contribute to achieve good results, e.g., in combination approaches with meta-learner based models. For example, the second place in the M4 Forecasting Competition was won by Feature-based Forecast Model Averaging (FFORMA), a model that exploits cross-series information in a meta-learner environment. In this model, the cross-series information is obtained using 42 statistical features that then serve as an input into the meta-learner. Despite the good result achieved with hand-crafted features, the approach has the potential limitations that hand-crafted features require domain knowledge and significant data-engineering work, which oftentimes is not feasible and may make the features not flexible enough to adapt to new datasets.</p>
 <p>In this study we propose a novel approach of a meta-learner with time series features. We replace the hand-crafted features with automatically generated features of time series in FFORMA. In particular, We present a deep-learning method to extract time series features specifically for forecasting using a convolutional neural network. We also demonstrate the impact our features have on the prediction capabilities of meta-learner based models like FFORMA, and compare the results with a host of benchmarking methods, and in particular to methods based on conventional statistical features. We are able to obtain promising results in various application areas, in particular on the M4 dataset, even with significantly smaller amounts of features than the comparison methods.</p>
 </div>
-<div id="notes-1" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-1" class="section level3">
+<h3>Notes:</h3>
 <p>Feature based forecasting eg - FFORMA - FFORMS - etc</p>
 <p>FFORMA uses TS features as a core component for combining models. Came second in M4 competition. Uses handcrafted features (tsfeatures, catch22, tsfresh). Disadvantages: - computationally intensive - low discriminative power - require domain knowledge - feature engineering</p>
 <p>Their research was into automating this stuff. Come up with an autoencoder. There was some problem with this, I think to do with not encoding based on the whole series, just using parts of it.</p>
@@ -527,17 +527,17 @@ summary {
 </ul>
 </div>
 </div>
-<div id="local-model-agnostic-interpretability-in-global-time-series-forecasting" class="section level3">
-<h3>Local model-agnostic interpretability in global time series forecasting</h3>
-<div id="dilini-rajapaksha" class="section level4">
-<h4>Dilini Rajapaksha</h4>
+<div id="local-model-agnostic-interpretability-in-global-time-series-forecasting" class="section level2">
+<h2>Local model-agnostic interpretability in global time series forecasting</h2>
+<div id="dilini-rajapaksha" class="section level3">
+<h3>Dilini Rajapaksha</h3>
 </div>
-<div id="abstract-2" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-2" class="section level3">
+<h3>Abstract:</h3>
 <p>Forecasting models that are trained across a set of multiple related time series, known as Global Forecasting Models (GFM), have shown promising results in forecasting competitions and real-world applications while outperforming many typical univariate forecasting approaches. One aspect of the popularity of forecasting models such as ETS and ARIMA is their relative simplicity and interpretability which enables the trust of the users towards the forecast. The main drawback of more complex global models, such as globally trained neural networks (NN), is their lack of interpretability, especially localized to a particular time series. This reduces the trust and confidence of the stakeholders when making decisions based on the forecasts without being able to understand the predictions. To mitigate this problem, in this work, we propose a novel local model-agnostic interpretability approach to explain the forecasts given from forecasting models that are built using global modelling techniques such as NNs. The proposed framework is able to explain the forecast given from a global model for a particular time-series while considering the forecasting model as a black-box model, in a model-agnostic way. To achieve this we train simpler univariate models that are considered interpretable (e.g., ETS) on the time series which needs to be explained while minimizing the forecasting difference between the global black-box model and the statistical model. As the results of the proposed approach, the forecast produced by the black-box model can therewith be explained through components such as relevant lags, trend, seasonality, and potentially the influence of external factors, thus enabling the user to better understand the forecast.</p>
 </div>
-<div id="notes-2" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-2" class="section level3">
+<h3>Notes:</h3>
 <p>Generally simple models are more interpretable and less accurate, and complex models are more accuracte but less interpretable. So there is a trade off. To overcome this trade off, find an explanation of complex models. Enter “Local Interpretability”. Common in Machien learning, uses local neighbourhood to explain particular predictions.</p>
 <p>In time-series forecasting we have local and global forecasting. Want to use local interpretability for global model.</p>
 <p>Global models have higher in-sample error and generalise better (i.e. doesn’t over fit).</p>
@@ -545,17 +545,17 @@ summary {
 <p>Lost the flow of this talk after this.</p>
 </div>
 </div>
-<div id="addressing-data-heterogeneity-in-time-series-forecasting-using-global-ensemble-models" class="section level3">
-<h3>Addressing data heterogeneity in time series forecasting using global ensemble models</h3>
-<div id="rakshitha-godahewa" class="section level4">
-<h4>Rakshitha Godahewa</h4>
+<div id="addressing-data-heterogeneity-in-time-series-forecasting-using-global-ensemble-models" class="section level2">
+<h2>Addressing data heterogeneity in time series forecasting using global ensemble models</h2>
+<div id="rakshitha-godahewa" class="section level3">
+<h3>Rakshitha Godahewa</h3>
 </div>
-<div id="abstract-3" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-3" class="section level3">
+<h3>Abstract:</h3>
 <p>The performance of Neural Networks (NN) was poor compared to the traditional univariate forecasting models in many forecasting competitions in the past. But recently, global forecasting models have demonstrated that they have the potential to outperform traditional univariate forecasting models such as Exponential Smoothing State Space Model (ETS) and Autoregressive Integrated Moving Average (ARIMA) after contributing to the winning solution of the M4 forecasting competition. However, if a time series database contains heterogeneous series, the accuracy of the global forecasting models may degrade. This can happen especially through underfitting the data. To bridge this gap, in this study, we focus on improving the accuracy of global forecasting models by addressing data heterogeneity using ensembling approaches. We present a series of ensemble forecasting models based on linear regression, Feedforward Neural Networks (FNN) and Recurrent Neural Networks (RNN) with Long Short-Term Memory (LSTM) cells. These models aggregate the predictions provided by a series of sub-models trained over different subgroups of time series within a dataset. The implemented ensemble models include clustering techniques that incorporate feature clustering, distance-based clustering and random clustering and the ensembling technique used for the winning solution of the M4 forecasting competition; the ensemble of specialists. We further combine the forecasts of our global models and traditional univariate forecasting models to improve the forecasting accuracy. Over six publicly available datasets, we show that ensembling a series of models trained over different parts of a particular dataset can improve the forecasting accuracy compared to non-ensemble models based on four evaluation metrics.</p>
 </div>
-<div id="notes-3" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-3" class="section level3">
+<h3>Notes:</h3>
 <ul>
 <li>GFMs may not be so good is the time series are heterogeneous (diverse characteristics)</li>
 <li>Can train multiple GFMs for groups of similar time series (eg use clustering on series)</li>
@@ -567,18 +567,18 @@ summary {
 <p>Conclusion: Clustered ensemble models work well for heterogeneous datasets</p>
 </div>
 </div>
-<div id="global-models-for-time-series-forecasting-a-simulation-study" class="section level3">
-<h3>Global models for time series forecasting: a simulation study</h3>
-<div id="hansika-hewamalage" class="section level4">
-<h4>Hansika Hewamalage</h4>
+<div id="global-models-for-time-series-forecasting-a-simulation-study" class="section level2">
+<h2>Global models for time series forecasting: a simulation study</h2>
+<div id="hansika-hewamalage" class="section level3">
+<h3>Hansika Hewamalage</h3>
 </div>
-<div id="abstract-4" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-4" class="section level3">
+<h3>Abstract:</h3>
 <p>Many state-of-the-art statistical techniques used for forecasting since the early days are univariate forecasting techniques which build a model per every series in isolation. However, with the recent advances in the infrastructure for storage, companies have collected enormous amounts of data over the years. Consequently, in the current context of Big Data, the nature of the forecasting problem has changed from predicting isolated series to predicting many (possibly related) series. The availability of large sets of time series opens up the opportunity to develop global models which simultaneously learn from many time series as opposed to traditional univariate techniques. Specifically in this respect, Recurrent Neural Networks (RNN) have demonstrated promising performance, e.g. in the M4 forecasting competition. Nevertheless, it still remains unclear under which circumstances global forecasting models can outperform the univariate benchmarks, especially along the dimensions of homogeneity/heterogeneity of series, complexity of patterns in series, complexity of models, and the lengths/number of series.</p>
 <p>Our study investigates these issues, by simulating a number of datasets that have controllable characteristics. We perform experiments involving a number of global forecasting models including RNNs, pooled regression models and Feed-Forward Neural Networks within these simulated settings and compare their performance against standard statistical univariate benchmarks. In this manner, we seek to comprehend the behaviour of global forecasting models when encountered with datasets of specific characteristics. In our work, we introduce complexity into the time series in terms of the number of parameters of the Data Generating Process (DGP) as well as its non-linearity. The heterogeneity is introduced by mixing time series generated from several DGPs into a single dataset. Unlike the real-world datasets, the simulated environments render it possible to have complete control over the underlying datasets. Our initial experiments demonstrate that developing a global model across many short series helps better than developing many models on every individual short series on a homogeneous set of series. Also, as is to be expected, linear pooled regression models are competitive in fitting the series coming from a linear DGP. When it comes to more complex DGPs in terms of non-linearity, the complex modelling capabilities of the RNNs help further. Similarly, with respect to heterogeneous series with multiple simple DGPs as well, it is evident that RNNs can show superior performance as global models with their complex functionality. Thus, we are able to characterise trade-offs between the heterogeneity, complexity of the series and the forecasting performance of global models.</p>
 </div>
-<div id="notes-4" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-4" class="section level3">
+<h3>Notes:</h3>
 <p>Global models work well on ‘related’ time series. But what does ‘related’ mean in this context?</p>
 <p>They simulate a number of time series, then run experiments on how related the time series have to be for global models to work well.</p>
 <p>Generate data with AR models, seasonal AR models, Mackey-Glass Equation, SETAR model, chaotic logistic map, Forecast with RNN (lstm cells with peephole connections), FFNN, LGBM, pooled regression, univariate AR models</p>
@@ -596,13 +596,13 @@ summary {
 </ul>
 </div>
 </div>
-<div id="why-does-joint-forecasting-of-multiple-time-series-work-so-well" class="section level3">
-<h3>Why does joint forecasting of multiple time series work so well?</h3>
-<div id="pablo-montero-manso" class="section level4">
-<h4>Pablo Montero-Manso</h4>
+<div id="why-does-joint-forecasting-of-multiple-time-series-work-so-well" class="section level2">
+<h2>Why does joint forecasting of multiple time series work so well?</h2>
+<div id="pablo-montero-manso" class="section level3">
+<h3>Pablo Montero-Manso</h3>
 </div>
-<div id="abstract-5" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-5" class="section level3">
+<h3>Abstract:</h3>
 <p>Organizations usually need to forecast multiple time series coming in groups, such as the demands for all products offered at one store, guest arrivals to all accommodation facilities at one city, etc. Local forecasting methods model each series individually, they fit a model to each product category or each accommodation facility. Global methods fit only one model for the whole group, pooling together the data for all time series. We can expect global methods to work better when the time series in the group are of similar nature, and local would be best when the group is heterogeneous.</p>
 <p>However, in the last few years global methods have been outperforming local methods even in some highly heterogeneous datasets. There is a lack of understanding of this phenomenon and the underlying principles that guide it. In particular, practitioners interested in the adoption of global methods face difficulties such as: When should we use global methods? How to group series? What constitutes similar series? What types of models are suitable for global methods? What sort of preprocessing do we need? What are the tradeoffs between local and global methods?</p>
 <p>We will present theoretical and empirical results comparing global and local methods, focusing on two main ideas:</p>
@@ -612,16 +612,16 @@ summary {
 </ol>
 <p>We will show how these results can be applied in practice for designing new forecasting algorithms that improve over the state-of-the-art local methods.</p>
 </div>
-<div id="notes-5" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-5" class="section level3">
+<h3>Notes:</h3>
 <p>Local methods: statistical but also NN, trees etc when fit on single series Global methods:</p>
 <p>We compare generalization gaps of local and global methods. The generalization gap increases with the number of parameters of the model, the more parameters, the worse it generalizes. (eg see occam’s razor, akaike information criteria).</p>
 <p>IMagine we have dataset of 100 time series. Using local method like seasonal arima, each model needs about 2-5 parameters, plus differences. So around ~500 parameters for the whole dataset</p>
 <p>Using a global method, if you can get to the same training error with fewer than 500 parameters, you will have better generalisation.</p>
 <p>Broadly speaking, model complexity of local methods grows with number of series, but complexity of global methods is fixed.</p>
 <p>BUUTTTT - multi-task learning not been that successful in general (really?) - useless for really complex models (more params than samples (what does this mean)) - does not explain why we can fit really simple global models</p>
-<div id="approximation-capacity-of-global-methods" class="section level5">
-<h5>Approximation capacity of global methods</h5>
+<div id="approximation-capacity-of-global-methods" class="section level4">
+<h4>Approximation capacity of global methods</h4>
 <p>why can we fit different time series with the same model.</p>
 <p>Given a local method, there exists a global method that produces texactly the same predictions</p>
 <ul>
@@ -644,60 +644,60 @@ summary {
 </div>
 <div id="session-probabilistic-forecasting" class="section level1">
 <h1>Session: Probabilistic Forecasting</h1>
-<div id="optimal-probabilistic-forecasts-when-do-they-work" class="section level3">
-<h3>Optimal probabilistic forecasts: When do they work?</h3>
-<div id="ruben-loaiza-maya" class="section level4">
-<h4>Ruben Loaiza-Maya</h4>
+<div id="optimal-probabilistic-forecasts-when-do-they-work" class="section level2">
+<h2>Optimal probabilistic forecasts: When do they work?</h2>
+<div id="ruben-loaiza-maya" class="section level3">
+<h3>Ruben Loaiza-Maya</h3>
 </div>
-<div id="abstract-6" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-6" class="section level3">
+<h3>Abstract:</h3>
 <p>Proper scoring rules are used to assess the out-of-sample accuracy of probabilistic forecasts, with different scoring rules rewarding distinct aspects of forecast performance. Herein, we re-investigate the practice of using proper scoring rules to produce probabilistic forecasts that are `optimal’ according to a given score, and assess when their out-of-sample accuracy is superior to alternative forecasts, according to that score. Particular attention is paid to relative predictive performance under misspecification of the predictive model. Using numerical illustrations, we document several novel findings within this paradigm that highlight the important interplay between the true data generating process, the assumed predictive model and the scoring rule. Only if a predictive model is sufficiently compatible with the true process to allow a particular score criterion to reward what it is designed to reward, will this approach to optimization reap benefits. Subject to this compatibility however, the superiority of the optimal forecast will be greater, the greater is the degree of misspecification. We explore these issues using a range of different scenarios, and using both artificially simulated and empirical data.</p>
 </div>
-<div id="notes-6" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-6" class="section level3">
+<h3>Notes:</h3>
 <p>Missed, due to previous session going over time</p>
 </div>
 </div>
-<div id="prediction-of-harvest-date-of-shrimp-in-an-aquaculture-system" class="section level3">
-<h3>Prediction of harvest date of shrimp in an aquaculture system</h3>
-<div id="ismael-sanchez" class="section level4">
-<h4>Ismael Sanchez</h4>
+<div id="prediction-of-harvest-date-of-shrimp-in-an-aquaculture-system" class="section level2">
+<h2>Prediction of harvest date of shrimp in an aquaculture system</h2>
+<div id="ismael-sanchez" class="section level3">
+<h3>Ismael Sanchez</h3>
 </div>
-<div id="abstract-7" class="section level4">
-<h4>Abstract:</h4>
-<p>Shrimp is among the most valuable traded marine product in the world. Accurate prediction of both growing curve and optimal harvest date of shrimp in farms is, therefore, very important. Quality engineers can use it to detect a low growing of the shrimps. Managers can use it to negotiate prices in advance and organize the harvesting logistics. In this work, we build a forecasting system to provide the predictive density of the weight of the shrimp for the future weeks. Alternative approaches are compared, such us the use of growth models and nonparametric techniques. We apply the methodology to a large scale fish farm in northern Peru. #### Notes: Predicting shrimp growth in a pond - use similar trajectories in data to help build predictive models. Use predictive errors from similar trajectories or something like that I think</p>
+<div id="abstract-7" class="section level3">
+<h3>Abstract:</h3>
+<p>Shrimp is among the most valuable traded marine product in the world. Accurate prediction of both growing curve and optimal harvest date of shrimp in farms is, therefore, very important. Quality engineers can use it to detect a low growing of the shrimps. Managers can use it to negotiate prices in advance and organize the harvesting logistics. In this work, we build a forecasting system to provide the predictive density of the weight of the shrimp for the future weeks. Alternative approaches are compared, such us the use of growth models and nonparametric techniques. We apply the methodology to a large scale fish farm in northern Peru. ### Notes: Predicting shrimp growth in a pond - use similar trajectories in data to help build predictive models. Use predictive errors from similar trajectories or something like that I think</p>
 </div>
 </div>
-<div id="identification-of-factors-and-forecasting-the-possibility-of-human-injuries-due-to-an-accident-in-colombo-katunayake-expressway-sri-lanka" class="section level3">
-<h3>Identification of factors and forecasting the possibility of human injuries due to an accident in colombo-katunayake expressway, Sri Lanka</h3>
-<div id="kushan-munasinghe" class="section level4">
-<h4>Kushan Munasinghe</h4>
+<div id="identification-of-factors-and-forecasting-the-possibility-of-human-injuries-due-to-an-accident-in-colombo-katunayake-expressway-sri-lanka" class="section level2">
+<h2>Identification of factors and forecasting the possibility of human injuries due to an accident in colombo-katunayake expressway, Sri Lanka</h2>
+<div id="kushan-munasinghe" class="section level3">
+<h3>Kushan Munasinghe</h3>
 </div>
-<div id="abstract-8" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-8" class="section level3">
+<h3>Abstract:</h3>
 <p>Accidents are one of the main social problems in the world as well as developing countries like Sri Lanka, which cause damage or injuries unintentionally and unexpectedly. Sri Lanka’s expressway system was launched in 2011 and currently has three major expressways: Southern Expressway, Colombo-Katunayake Expressway, and Outer-Circle Expressway. After the construction of expressways, many people opted for expressways on the basis of time, traffic, ease of driving, etc., rather than normal roads. The number of accidents on expressways has been on the rise in recent years. Nowadays, the rate of accident occurrence in Colombo-Katunayake Expressway is high compared to the other two Expressways and there was no previous research has been done in Sri Lanka regarding accidents in Colombo-Katunayake expressway. The aim of this study is to identify the factors that contribute to the accidents on the Colombo-Katunayake expressway and to develop appropriate regression and data mining models to forecast the possibility of human injuries due to an accident with a higher level of accuracy.</p>
 <p>In this study, 704 total accident cases of Colombo-Katunayake expressway were considered during the period from 2013 to 2019. Pearson Chi-square, Logistic regression, Point biserial correlation and Kruskal–Wallis H tests were used to identify the association between the binary response variable (possibility of human injuries) and other influential variables. Finally, from selected predictor variables, seven variables: time category, driver’s age category, vehicle type, reason for accident, number of vehicles involved, cause for accident and rainfall were identified as influencing variables to the possibility of human injuries under 5% level of significance. Initially, the Binary Logistic Regression (BLR) model was performed to forecast the possibility of human injuries. Further, Classification tree (CART), Naïve Bayes classification algorithm, and Probabilistic neural network (PNN) were used in the study as data mining techniques to forecast the possibility of human injuries for the same datasets which were used to build and test the BLR model. Random Under-Sampling technique was used to overcome the class imbalance problem that persists in the data set considered in the study. Finally, Best performed models were found from each approach and the forecasting ability of these models was compared to come up with the best model to predict the possibility of human injuries.</p>
 <p>The BLR model predicts the possibility of human injuries due to accidents with an accuracy of 70.7% and among data mining models, the PNN exhibits a higher overall prediction accuracy than classification tree and Naïve Bayes. The best PNN outperforms the best BLR model and finally, this model can be proposed as a better model to forecast the possibility of human injuries in Colombo-Katunayake expressway. The best performed PNN model contains two hidden layers, with 176 neurons in the pattern layer and two neurons in the output layer with 0.1 spread value. This model has the ability to forecast unseen data with 75.7% accuracy, 78.7% precision and 92.3% recall. The final model developed by this study can be used to implement safety improvements against traffic accidents in expressways of Sri Lanka.</p>
 </div>
-<div id="notes-7" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-7" class="section level3">
+<h3>Notes:</h3>
 <p>Didn’t listen.</p>
 </div>
 </div>
 </div>
 <div id="session-hierarchical-forecasting-i" class="section level1">
 <h1>Session: Hierarchical Forecasting I</h1>
-<div id="forecast-reconciliation-a-geometric-view-with-new-insights-on-bias-correction" class="section level3">
-<h3>Forecast reconciliation: A geometric view with new insights on bias correction</h3>
-<div id="george-athanasopoulos" class="section level4">
-<h4>George Athanasopoulos</h4>
+<div id="forecast-reconciliation-a-geometric-view-with-new-insights-on-bias-correction" class="section level2">
+<h2>Forecast reconciliation: A geometric view with new insights on bias correction</h2>
+<div id="george-athanasopoulos" class="section level3">
+<h3>George Athanasopoulos</h3>
 </div>
-<div id="abstract-9" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-9" class="section level3">
+<h3>Abstract:</h3>
 <p>A geometric interpretation is developed for so-called reconciliation methodologies used to forecast time series that adhere to known linear constraints. In particular, a general framework is established nesting many existing popular reconciliation methods within the class of projections. This interpretation facilitates the derivation of novel theoretical results. First, reconciliation via projection is guaranteed to improve forecast accuracy with respect to a class of loss functions based on a generalised distance metric. Second, the MinT method minimises expected loss for this same class of loss functions. Third, the geometric interpretation provides a new proof that forecast reconciliation using projections results in unbiased forecasts provided the initial base forecasts are also unbiased. Approaches for dealing with biased base forecasts are proposed. An extensive empirical study on Australian tourism flows demonstrates the theoretical results of the paper and shows that bias correction prior to reconciliation outperforms alternatives that only bias-correct or only reconcile forecasts.</p>
 </div>
-<div id="notes-8" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-8" class="section level3">
+<h3>Notes:</h3>
 <p>Generalised perspectives on forecast reconciliation.</p>
 <ul>
 <li>Hierarchical time series defined by linear constraints (not just sums)</li>
@@ -715,17 +715,17 @@ summary {
 <p>Fantastic talk!!!</p>
 </div>
 </div>
-<div id="probabilistic-forecasts-in-hierarchical-time-series" class="section level3">
-<h3>Probabilistic Forecasts in Hierarchical Time Series</h3>
-<div id="anastasios-panagiotelis" class="section level4">
-<h4>Anastasios Panagiotelis</h4>
+<div id="probabilistic-forecasts-in-hierarchical-time-series" class="section level2">
+<h2>Probabilistic Forecasts in Hierarchical Time Series</h2>
+<div id="anastasios-panagiotelis" class="section level3">
+<h3>Anastasios Panagiotelis</h3>
 </div>
-<div id="abstract-10" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-10" class="section level3">
+<h3>Abstract:</h3>
 <p>We develop a framework for prediction or forecasting of multivariate data that follow some known linear constraints, such as the example where some variables are aggregates of others. For point prediction, an increasingly popular technique is reconciliation, whereby predictions or forecasts are made for all series (so called ‘base’ forecasts) and subsequently adjusted to ensure coherence with the constraints. This paper extends reconciliation from the setting of point prediction to probabilistic prediction. A novel definition of reconciliation is developed and used to construct densities and draw samples from a reconciled probabilistic prediction. In the elliptical case, it is proven that the true predictive distribution can be recovered from reconciliation even when the location and scale matrix of the base prediction are chosen arbitrarily. To find reconciliation weights, an objective function based on scoring rules is optimised. The energy and variogram scores are chosen since the log score is improper in the context of comparing unreconciled to reconciled forecasts, a result also proved in this paper. To account for the stochastic nature of the energy score, optimisation is achieved using stochastic gradient descent. The proposed algorithm is applied in a number of simulated scenarios and to the empirical example of forecasting electricity generation from different sources (e.g, renewable v non-renewable, coal, gas, wind solar etc.).</p>
 </div>
-<div id="notes-9" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-9" class="section level3">
+<h3>Notes:</h3>
 <p><a href="https://anastasiospanagiotelis.netlify.app/talks/probreco/probreco#1" class="uri">https://anastasiospanagiotelis.netlify.app/talks/probreco/probreco#1</a></p>
 <p>Can do the same definition for coherence, but on probabilities, instead of points. End up using some measure theory to talk about images, instead of pre-multiplying by a matrix, and pre-images instead of inversions.</p>
 <p>Take the probability from the space (A), and assign that probability to the image on the subspace.</p>
@@ -735,33 +735,33 @@ summary {
 <p>Got a little lost here… you use scoring function to find d and G…</p>
 </div>
 </div>
-<div id="a-geometry-inspired-hierarchical-forecasting-methodology" class="section level3">
-<h3>A geometry inspired hierarchical forecasting methodology</h3>
-<div id="nikos-kourentzes" class="section level4">
-<h4>Nikos Kourentzes</h4>
+<div id="a-geometry-inspired-hierarchical-forecasting-methodology" class="section level2">
+<h2>A geometry inspired hierarchical forecasting methodology</h2>
+<div id="nikos-kourentzes" class="section level3">
+<h3>Nikos Kourentzes</h3>
 </div>
-<div id="abstract-11" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-11" class="section level3">
+<h3>Abstract:</h3>
 <p>Hierarchical forecasting has been central to business forecasting and recently has received a lot of attention in research. Moving beyond classical top-down and bottom-up alternatives, hierarchical forecasting is nowadays seen as a reconciliation problem. The objective is to adjust independent (base) forecasts by combining them, subject to additivity constraints, to obtain the hierarchical (coherent) forecasts. Although there are multiple approaches to do this, the widely used MinT methodology provides such a solution and has been shown to provide good results. Recently, a geometric interpretation of the methodology provided additional insights into its properties and operation. We rely on this geometric view to investigate alternative solutions to the hierarchical forecasting problem. First, we show that we can provide a general and efficient geometric formulation of the alternative MinT-family reconciliation heuristics, for low dimensional problems, that moves away from the regression formulation of the problem. Then we proceed to propose an exact and an approximate reformulation that both overcome the dimensionality limitation and provide competitive solutions to MinT.</p>
 </div>
-<div id="notes-10" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-10" class="section level3">
+<h3>Notes:</h3>
 <p>Showed same geometric explanation as first talk by George Athanasopolous. Showed that MinT is same as choosing the right projection angle. But this is infeasible to do directly?</p>
 <p>Can plot these rotations in a rotation plot.</p>
 <p>But using the angle plot is useful for diagnosing estimation errors for W.</p>
 </div>
 </div>
-<div id="dont-evaluate-coherent-hierarchical-forecasts-using-the-mape" class="section level3">
-<h3>Don’t evaluate coherent hierarchical forecasts using the MAPE!</h3>
-<div id="stephan-kolassa" class="section level4">
-<h4>Stephan Kolassa</h4>
+<div id="dont-evaluate-coherent-hierarchical-forecasts-using-the-mape" class="section level2">
+<h2>Don’t evaluate coherent hierarchical forecasts using the MAPE!</h2>
+<div id="stephan-kolassa" class="section level3">
+<h3>Stephan Kolassa</h3>
 </div>
-<div id="abstract-12" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-12" class="section level3">
+<h3>Abstract:</h3>
 <p>On the one hand, we want hierarchical forecasts to be coherent (i.e., sum-consistent: the forecast of a sum total should be the total of the component forecasts). On the other hand, we want low errors, such as MAPEs. On the third hand, optimal point forecasts depend on the error measure. Assessing coherent hierarchical forecasts on MSEs makes sense, because MSEs are minimized by expectation forecasts, and the expectation is additive. However, the MAPE-minimizing functional is not additive, so if we want to minimize the MAPE, it makes no sense to aim for coherent forecasts - and vice versa. This is analogous to the fact that (hopefully) nobody will expect hierarchical quantile forecasts to be coherent. We investigate this effect and call for an increased emphasis on distributional aspects in hierarchical forecasting.</p>
 </div>
-<div id="notes-11" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-11" class="section level3">
+<h3>Notes:</h3>
 <p>The contentions - The only KPI (measure?) that makes sense for heirarchical point forecasting is the RMSE - We should pay more attention to multivariate predictive densities</p>
 <p>Point forecasts depend on error measure. Example with gamma.</p>
 <p>Example: quantile forecasts should not be coherant (he means, shouldn’t sum up).</p>
@@ -771,32 +771,32 @@ summary {
 <p>Very basic level talk.</p>
 </div>
 </div>
-<div id="optimal-top-down-hierarchical-forecast-reconciliation" class="section level3">
-<h3>Optimal Top-Down Hierarchical Forecast Reconciliation</h3>
-<div id="robert-davies" class="section level4">
-<h4>Robert Davies</h4>
+<div id="optimal-top-down-hierarchical-forecast-reconciliation" class="section level2">
+<h2>Optimal Top-Down Hierarchical Forecast Reconciliation</h2>
+<div id="robert-davies" class="section level3">
+<h3>Robert Davies</h3>
 </div>
-<div id="abstract-13" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-13" class="section level3">
+<h3>Abstract:</h3>
 <p>This paper develops a new method to perform top-down hierarchical forecast reconciliation that is designed to minimize the overall amount of revision to the original, unreconciled forecasts. This would be useful in situations where one needed to, or had a strong reason to, use a top-down hierarchical forecast reconciliation, but wanted to preserve the original, unreconciled forecasts as much as possible. Such situations are common in many business settings where there are often strong priors on the top-level growth of the business or different business metrics. If we define the difference between the original, unreconciled forecasts and the final, reconciled forecasts as a reconciliation error, the method developed in this paper works by minimizing a loss functions over the reconciliation errors subject to the constraint that the top-most forecast remains unaltered. The paper builds off the methods developed in Hyndman et al (2011) and elsewhere, but introduces the concept of using a constrained optimization approach to achieve a top-down reconciliation.</p>
 <p>Two backtesting exercises are presented where the method in this paper is contrasted with other popularly used top-down reconciliation methods. The first exercise uses an internal dataset on revenue for different business metrics within Amazon Web Services (AWS). The second exercise uses publicly available data on tourism in Australia. In both exercises the optimal top-down method introduced in this paper had the smallest overall revision to the original, unreconciled forecasts. In the first exercise it had an average absolute revision of 2.40% compared with 4.85% for the next best performing top-down method. In the second exercise it had an average absolute revision of 0.40% compared with 0.89% for the next best performing top-down method. In terms of accuracy, the method introduced in this paper had comparable accuracy results with the best performing of the existing top-down methods considered and not much worse than the accuracy of the original, unreconciled forecasts or the (not top-down) optimal method introduced in Hyndman et al (2011). The method developed here had the lowest average MAPE among all top-down methods in the first backtesting exercise with an average MAPE of 17.60% compared with 18.26% for the next best performing top-down method. The original, unreconciled forecasts had an average MAPE of 16.96% and the optimal method from Hyndman et al (2011) had an average MAPE of 17.29%. In the second backtesting exercise the method developed here had an average MAPE of 4.91% compared with 4.85% for the best performing top-down method. The original, unreconciled forecasts had an average MAPE of 4.86% and the optimal method from Hyndman et al (2011) had an average MAPE of 4.83%.</p>
 </div>
-<div id="notes-12" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-12" class="section level3">
+<h3>Notes:</h3>
 <p>Didn’t show</p>
 </div>
 </div>
-<div id="gravitational-forecast-reconciliation" class="section level3">
-<h3>GRAVITATIONAL FORECAST RECONCILIATION</h3>
-<div id="carla-freitas-silveira-netto" class="section level4">
-<h4>Carla Freitas Silveira Netto</h4>
+<div id="gravitational-forecast-reconciliation" class="section level2">
+<h2>Gravitational forecast reconciliation</h2>
+<div id="carla-freitas-silveira-netto" class="section level3">
+<h3>Carla Freitas Silveira Netto</h3>
 </div>
-<div id="abstract-14" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-14" class="section level3">
+<h3>Abstract:</h3>
 <p>In many situations, companies do not have time-series of sales data, in geographical disaggregation corresponding to their marketing strategy. Even more challenging, if those companies want to enter a new market or to expand their business to new locations, they will probably arrive at a new territory having just a total sales estimation for the new country or city without any sales history on more local levels. This may be a problem because marketing activities are usually executed at a more local, disaggregated level. This total, aggregated, forecast will need to be divided into smaller geographical regions coherently to the total forecast. This is usually done by applying a statistical approach known as forecast reconciliation. These approaches, so far, use actual sales data or at least historical sales proportions on a disaggregated level. The problem is that such data may not always be available. In this paper, we propose a new forecasting reconciliation approach. We forecast the most aggregated level sales using a deep learning technique – Long Short-Term Memory (LSTM) (Hochreiter &amp; Schmidhuber, 1997) – adapted to time-series forecasting and then reconcile them to lower levels with an alternative top-down approach that uses a gravitational model inspired in Huff’s gravity model (Huff, 1964). Our gravitational forecast reconciliation (GFR) has the advantage of, instead of using historical proportions, it distributes the total sales among more granular levels with a gravitational model built with easily/publicly available and/or low-cost geographical POI data. We test and validate our approach with historical sales proprietary data of two different companies from two different countries, a Brazilian and a Turkish manufacturer of construction materials, both major players in their respective countries and markets. The results show that our proposed reconciliation approach has a similar or better performance than the benchmark approaches at all levels of the geographical aggregation tested. The key theoretical contribution is to demonstrate that gravitational models based on agglomeration theory (Liu, Steenkamp, &amp; Zhang (2018) can be used to predict and not only explain behavior. Our methodological contribution enables companies to distribute and reconcile forecasts to lower levels of aggregation when no actual disaggregated sales data or historical sales proportions are available. For practice, the GFR approach offers several advantages. First, companies can apply it to new territories, points of sales, or marketing channels, distributing the forecasted aggregated sales into smaller granular spatial units. Second, GFR also allows the development of a coherent forecast system based on the location, quantity, and diversity of points of interest (POIs) of a specific region, according to the desired company strategy. Third, it is easy and relatively cheap to implement in any organization, from all sizes and economic sectors, helping them to distribute sales forecasts to new regions or markets where the company plans to direct the market and have no historical sales data, just a total estimation. Finally, GFR can be embedded in production planning decision support systems and help companies to devise their future marketing strategies.</p>
 </div>
-<div id="notes-13" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-13" class="section level3">
+<h3>Notes:</h3>
 <p>Situation where you want to do top down reconciliation. They propose a method they called ‘gravitational forecast reconciliation’. Based on the Huff Gravity model.</p>
 <p>This is a model of customers living in population centers, with shopping facilities. Individual based model that includes euclidian distance between population centre and facility (determining proportions for the top down model). Does not require historical data or proportions because you use the model.</p>
 <p>Have data on - demographics + geography - economic indicators - POIs - something else</p>
@@ -806,18 +806,18 @@ summary {
 </div>
 <div id="keynote-rob-hyndman" class="section level1">
 <h1>Keynote: Rob Hyndman</h1>
-<div id="ten-years-of-forecast-reconciliation" class="section level3">
-<h3>Ten years of forecast reconciliation</h3>
-<div id="notes-14" class="section level4">
-<h4>Notes:</h4>
-<div id="hierarchical-forecasting-20-years-ago" class="section level5">
-<h5>Hierarchical forecasting 20 years ago</h5>
+<div id="ten-years-of-forecast-reconciliation" class="section level2">
+<h2>Ten years of forecast reconciliation</h2>
+<div id="notes-14" class="section level3">
+<h3>Notes:</h3>
+<div id="hierarchical-forecasting-20-years-ago" class="section level4">
+<h4>Hierarchical forecasting 20 years ago</h4>
 <p>In 1990s there were really three choices - Top down - Middle out - Bottom up</p>
 <p>Around 2001 had the idea to reconcile all forecasts using least squares optimization. Then 2004 had PhD student to start working on it with postdoc (George). Presentation at ISF 2006, pre-print paper in 2007. Application to Australian tourism data in 2009. First version of hts package on CRAN 2010. 2011 until paper finally appeared.</p>
 <p>Subject has really taken off in the last 10 years.</p>
 </div>
-<div id="point-forecast-reconciliation" class="section level5">
-<h5>Point forecast reconciliation</h5>
+<div id="point-forecast-reconciliation" class="section level4">
+<h4>Point forecast reconciliation</h4>
 <p>Can have - Hierarchical series - Grouped series</p>
 <p>eg tourism by state and purpose of travel (order doesn’t matter so grouped)</p>
 <p>Can always write as</p>
@@ -829,12 +829,12 @@ summary {
 <p>Minimum trace (MinT) reconciliation - trace of variances is minimized for a know expression.</p>
 <p>Hard to calculate this expression. There are a bunch of estimates for this (both for MinT and for OLS and WLS).</p>
 </div>
-<div id="example-australian-tourism" class="section level5">
-<h5>Example: Australian tourism</h5>
+<div id="example-australian-tourism" class="section level4">
+<h4>Example: Australian tourism</h4>
 <p>All methods give better accuracy than base forecasts. Can’t use mint_cov for lots of series! Improvements greater at lower levels</p>
 </div>
-<div id="probabilistic-forecast-reconciliation" class="section level5">
-<h5>Probabilistic forecast reconciliation</h5>
+<div id="probabilistic-forecast-reconciliation" class="section level4">
+<h4>Probabilistic forecast reconciliation</h4>
 <p>What does it mean for a probabilistic forecast to be reconciled? - The reconciled multivariate density must lie on the coherent subspace.</p>
 <p>Two results:</p>
 <ul>
@@ -846,13 +846,13 @@ summary {
 <p>Energy score is proper (but you have to use FULL hierarchy).</p>
 <p>Have to optimize <span class="math inline">\(G\)</span> to optimize Energy score now, instead of using MinT.</p>
 </div>
-<div id="example" class="section level5">
-<h5>Example</h5>
+<div id="example" class="section level4">
+<h4>Example</h4>
 <p>Energy forecasting. Interested in probabilistic because of extreme tail events. Use simple feed forward NN to forecast. Residuals are non-gaussian. Strong correlations between some residuals.</p>
 <p>Computed mean energy score using 4 different assumptions on residuals (gaussian/dependence). Used a bunch of different methods. SKipped over the results.</p>
 </div>
-<div id="extensions" class="section level5">
-<h5>Extensions</h5>
+<div id="extensions" class="section level4">
+<h4>Extensions</h4>
 <p>What else have people done in this space?</p>
 <ul>
 <li><span class="math inline">\(S\)</span> matrix can have any values, not just 0 and 1</li>
@@ -868,15 +868,15 @@ summary {
 </div>
 <div id="keynote-facebook" class="section level1">
 <h1>Keynote: Facebook</h1>
-<div id="best-practices-for-forecasting-at-scale" class="section level3">
-<h3>Best practices for forecasting at scale</h3>
-<div id="ginger-holt-manager-infrastructure-data-science-facebook-and-italo-lima-data-scientist-infrastructure-data-science-facebook." class="section level4">
-<h4>Ginger Holt (Manager, Infrastructure Data Science Facebook) and Italo Lima (Data Scientist, Infrastructure Data Science Facebook).</h4>
+<div id="best-practices-for-forecasting-at-scale" class="section level2">
+<h2>Best practices for forecasting at scale</h2>
+<div id="ginger-holt-manager-infrastructure-data-science-facebook-and-italo-lima-data-scientist-infrastructure-data-science-facebook." class="section level3">
+<h3>Ginger Holt (Manager, Infrastructure Data Science Facebook) and Italo Lima (Data Scientist, Infrastructure Data Science Facebook).</h3>
 </div>
-<div id="notes-15" class="section level4">
-<h4>Notes:</h4>
-<div id="organizational-challenges" class="section level5">
-<h5>Organizational Challenges</h5>
+<div id="notes-15" class="section level3">
+<h3>Notes:</h3>
+<div id="organizational-challenges" class="section level4">
+<h4>Organizational Challenges</h4>
 <p>Infrastructure Data Science (IDS)</p>
 <ul>
 <li>Accuracy isn’t always what they want</li>
@@ -890,8 +890,8 @@ summary {
 </ul>
 <p>A lot of fluff talked about here without much of substance.</p>
 </div>
-<div id="practical-challenges" class="section level5">
-<h5>Practical Challenges</h5>
+<div id="practical-challenges" class="section level4">
+<h4>Practical Challenges</h4>
 <ul>
 <li>Onboarding forecasts</li>
 <li>Data QC</li>
@@ -900,8 +900,8 @@ summary {
 <li>Automatic monitoring</li>
 </ul>
 </div>
-<div id="technical-challenges" class="section level5">
-<h5>Technical Challenges</h5>
+<div id="technical-challenges" class="section level4">
+<h4>Technical Challenges</h4>
 <ul>
 <li>Holidays and special events: peak prediction. Hard to forecast directly. Use two methods, overall prediction, and then separate prediction for peaks.</li>
 <li>Prediction intervals / uncertainty intervals: periodically refresh the forecast and keep a close eye on error monitoring (lots of error metrics).</li>
@@ -914,31 +914,31 @@ summary {
 <p>“Self-supervised learning for fast and scalable time-series hypterparameter tuning” - Xiaodong Jiang, Peiyi Zhang, et al. Model selection with self-supervised learning</p>
 <p>Tooling:</p>
 </div>
-<div id="solutions" class="section level5">
-<h5>Solutions</h5>
+<div id="solutions" class="section level4">
+<h4>Solutions</h4>
 </div>
-<div id="qa" class="section level5">
-<h5>Q&amp;A</h5>
+<div id="qa" class="section level4">
+<h4>Q&amp;A</h4>
 </div>
 </div>
 </div>
 </div>
 <div id="session-software-and-support-systems-i" class="section level1">
 <h1>Session: Software and Support Systems I</h1>
-<div id="forecasting-website" class="section level3">
-<h3>Forecasting website</h3>
-<div id="andrey-vasnev" class="section level4">
-<h4>Andrey Vasnev</h4>
+<div id="forecasting-website" class="section level2">
+<h2>Forecasting website</h2>
+<div id="andrey-vasnev" class="section level3">
+<h3>Andrey Vasnev</h3>
 </div>
-<div id="abstract-15" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-15" class="section level3">
+<h3>Abstract:</h3>
 <p>Forecastability builds confidence and certainty in the economy. Both individuals’ and organizations’ decision-making processes become more efficient, given a reliable and robust forecast of the economy. Inaccurate forecasts, whether they underestimate or overestimate, incur additional costs. Forecasts are therefore crucial for all economic and business activities. Forecasting accuracy, especially over longer horizons, is crucial for policymakers, institutions, and individuals.</p>
 <p>The purpose of this project is to produce a high-quality website that makes business forecasting accessible to the wider community. The goal is to make the website a default ‘go-to’ place for everyone who needs to predict common publicly available time series.</p>
 <p>The proposed publicly available forecasting website aims to implement both classical forecasting models as well as the novel models. The website will visualize and summarize the forecasting results in an easy-to-understand manner. Regular macroeconomic and financial forecasts will be produced on a quarterly and daily basis respectively.</p>
 <p>The Time Series and Forecasting group at the University of Sydney Business School has built a website, which is already operational and available at &lt;business-forecast-lab.com&gt;. We implemented daily automatically updated forecasts for major financial time series, including exchange rates, stock indices, and volatilities across different countries and markets. The models were implemented with Python, which is running on a server automatically every day.</p>
 </div>
-<div id="notes-16" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-16" class="section level3">
+<h3>Notes:</h3>
 <p>The current state: - lots of data available online - lots of forecasting methods freely available - performance of these methods is reliable - but it is difficult to get a current forecast of commonly used series</p>
 <p>The idea: - Create an open-source forecasting website</p>
 <p>See <a href="https://business-forecast-lab.com/" class="uri">https://business-forecast-lab.com/</a></p>
@@ -946,36 +946,36 @@ summary {
 <p>Community sourced so open to suggestions</p>
 </div>
 </div>
-<div id="probabilistic-cross-temporal-hierarchies-in-fable" class="section level3">
-<h3>Probabilistic cross-temporal hierarchies in fable</h3>
-<div id="mitchel-ohara-wild" class="section level4">
-<h4>Mitchel O’Hara-Wild</h4>
+<div id="probabilistic-cross-temporal-hierarchies-in-fable" class="section level2">
+<h2>Probabilistic cross-temporal hierarchies in fable</h2>
+<div id="mitchel-ohara-wild" class="section level3">
+<h3>Mitchel O’Hara-Wild</h3>
 </div>
-<div id="abstract-16" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-16" class="section level3">
+<h3>Abstract:</h3>
 <p>The fable framework facilitates forecasting large collections of time series within a tidy data analysis workflow. The framework provides a carefully designed modelling interface which allows complex modelling tasks to be performed with minimal and readable code.</p>
 <p>Recent extensions allow fable to better handle time series that are observed frequently at various levels of a hierarchy. It is now possible use fable for constructing and reconciling temporal hierarchies, which is a technique well known to improve forecasting accuracy. Temporal reconciliation can also be used on an existing hierarchy to give cross-temporal reconciliation, all whilst producing density forecasts.</p>
 <p>This talk will demonstrate the latest fable features using a real forecasting problem. In particular, cross-temporal reconciliation will be used to produce coherent density forecasts using data observed at mixed temporal granularities.</p>
 </div>
-<div id="notes-17" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-17" class="section level3">
+<h3>Notes:</h3>
 <p>Fable builds on tsibble (also tsibbledata + feasts). A little intro to tsibble here.</p>
 <p>Temporaral reconciliation uses package called moment (for temporal granularities)</p>
 <p>Cross-temporal. Use <code>aggregate_key() %&gt;% aggregate_index()</code>.</p>
 <p><a href="https://slides.mitchelloharawild.com/isf2020/" class="uri">https://slides.mitchelloharawild.com/isf2020/</a></p>
 </div>
 </div>
-<div id="a-tool-to-detect-potential-data-leaks-in-forecasting-competitions" class="section level3">
-<h3>A tool to detect potential data leaks in forecasting competitions</h3>
-<div id="thiyanga-talagala" class="section level4">
-<h4>Thiyanga Talagala</h4>
+<div id="a-tool-to-detect-potential-data-leaks-in-forecasting-competitions" class="section level2">
+<h2>A tool to detect potential data leaks in forecasting competitions</h2>
+<div id="thiyanga-talagala" class="section level3">
+<h3>Thiyanga Talagala</h3>
 </div>
-<div id="abstract-17" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-17" class="section level3">
+<h3>Abstract:</h3>
 <p>Forecasting competitions are of increasing importance as a mean to learn best practices and gain knowledge. Data leakage is one of the most common issues that can often be found in competitions. Data leaks can happen when the training data contains information about the test data. There are a variety of different ways that data leaks can occur with time series data. For example: i) randomly chosen blocks of time series are concatenated to form a new time series, ii) scale-shifts, iii) repeating patterns in time series, iv) white noise is added in the original time series to form a new time series, etc. This work introduces a novel tool to detect these data leaks. The tsdataleaks package provides simple and computationally efficient algorithm to exploit data leaks in time series data. I will demonstrate the package design and its power to detect data leakages using recent forecasting competitions data.</p>
 </div>
-<div id="notes-18" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-18" class="section level3">
+<h3>Notes:</h3>
 <p>New R package: tsdataleaks</p>
 <p>Data leakage if one series is subset of another series. Examples of this from M1 and M4 competition.</p>
 <p>Algorithm to detect data leakage based on pearson’s correlation. Takes window of series and slides across other series to calculate correlations, looking for periods of very high correlations. Implemented in tsdataleaks.</p>
@@ -986,13 +986,13 @@ summary {
 </div>
 <div id="keynote-sas" class="section level1">
 <h1>Keynote: SAS</h1>
-<div id="enhancing-shipment-forecast-for-cpg-companies-using-machine-learning-and-demand-sensing" class="section level3">
-<h3>Enhancing shipment forecast for CPG companies using machine learning and demand sensing</h3>
-<div id="varun-valsaraj-sas-ai-center-of-excellence-kedar-prabhudesai-sas-ai-center-of-excellence" class="section level4">
-<h4>Varun Valsaraj (SAS AI Center of Excellence), Kedar Prabhudesai (SAS AI Center of Excellence)</h4>
+<div id="enhancing-shipment-forecast-for-cpg-companies-using-machine-learning-and-demand-sensing" class="section level2">
+<h2>Enhancing shipment forecast for CPG companies using machine learning and demand sensing</h2>
+<div id="varun-valsaraj-sas-ai-center-of-excellence-kedar-prabhudesai-sas-ai-center-of-excellence" class="section level3">
+<h3>Varun Valsaraj (SAS AI Center of Excellence), Kedar Prabhudesai (SAS AI Center of Excellence)</h3>
 </div>
-<div id="notes-19" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-19" class="section level3">
+<h3>Notes:</h3>
 <p>Forecasting shipments for CPG companies</p>
 <p>Challenge: Agile to shifting market conditions, changing consumer expectations etc. Need to leverage real-time demand signals. Use machine learning to improve short-term forecast. Automatically integrate results into planning and execution systems.</p>
 <p>Signals: - Order/shipment history - Future orders (usually a few days in advance, but sometimes up to a month) - POS and customer inventory</p>
@@ -1006,28 +1006,28 @@ summary {
 <p>Split data into training/val/testing. Use validation data to choose the best model whenever there is a choice to make about that.</p>
 <p>Metrics: CPG company currently uses these metrics, so SAS uses the same metrics.</p>
 <p>Accuracy <span class="math display">\[\left[1 - \frac{\sum_i |F_i - O_i|}{\sum F_i}\right] \times 100\]</span> Bias <span class="math display">\[\left[ 1 - \frac{\sum_i O_i}{\sum_i F_i}\right] \times 100 \]</span></p>
-<div id="weekly-forecast-accuracy" class="section level5">
-<h5>Weekly forecast accuracy</h5>
+<div id="weekly-forecast-accuracy" class="section level4">
+<h4>Weekly forecast accuracy</h4>
 <p>Expert overrides help in short term (&lt;= 4 weeks), but hinder in long term. The SAS forecasts are much better (+ ~6%) across all 8 lag periods.</p>
 <p>Bias metric is also better. CPG bias tends to be under forecasting. SAS is close to zero in lags 1-4, and positive for weeks 5-8.</p>
 </div>
-<div id="pos-data" class="section level5">
-<h5>POS data</h5>
+<div id="pos-data" class="section level4">
+<h4>POS data</h4>
 <p>Measured effect on accuracy of including POS data. Including POS + Inventory data increased accuracy by about 1%.</p>
 <p>Why not directly forecast at daily level? - very noisy - aggregating to weekly reduces these fluctuations</p>
 <p>Three methods are tried</p>
 <p>enhanced weekly forecast, order shipment history/future orders/pos data &gt; long term seasonal model, short term trend model, machine learning model &gt; champion model &gt; get forecasts</p>
 </div>
-<div id="short-term-trend-model" class="section level5">
-<h5>Short term trend model</h5>
+<div id="short-term-trend-model" class="section level4">
+<h4>Short term trend model</h4>
 <p>Look at daily proportions over last few weeks. Get average proportions then multiply out by weekly forecast. (have to be careful with outliers though)</p>
 </div>
-<div id="long-term-seasonal-model" class="section level5">
-<h5>Long term seasonal model</h5>
+<div id="long-term-seasonal-model" class="section level4">
+<h4>Long term seasonal model</h4>
 <p>Look at long term three year period. Look at proportions for each year then multiply out by weekly forecasts.</p>
 </div>
-<div id="machine-learning-based-model" class="section level5">
-<h5>Machine learning based model</h5>
+<div id="machine-learning-based-model" class="section level4">
+<h4>Machine learning based model</h4>
 <p>NN that takes proportions from last 2 years and outputs proportions for now. Then multiply by weekly forecast.</p>
 <p>Shows that enhanced daily forecast is significantly more accurate (+30% accuracy) than the naive daily forecast (evenly distribute weekly forecast into days). Bias improves too. Enhanced forecasts remove a lot of bias and are generally close to 0.</p>
 <p>Nicely detailed talk :)</p>
@@ -1038,8 +1038,8 @@ summary {
 </div>
 <div id="keynote-arnold-zellner-memorial" class="section level1">
 <h1>Keynote: Arnold Zellner Memorial</h1>
-<div id="andrew-harvey" class="section level4">
-<h4>Andrew Harvey</h4>
+<div id="andrew-harvey" class="section level3">
+<h3>Andrew Harvey</h3>
 <p>New class of time series models for predicting a variable which when cumulated is subject to an unknown saturation level. Very successful for forecasting covid cases in germany.</p>
 <p>These models are estimated by MLE.</p>
 <p>Not a compartmental model. Uses historical data to make predictions, rather than simulation.</p>
@@ -1051,10 +1051,10 @@ summary {
 </div>
 <div id="keynote-google" class="section level1">
 <h1>Keynote: Google</h1>
-<div id="consolidated-framework-for-forecast-generation-and-evaluation" class="section level3">
-<h3>Consolidated framework for forecast generation and evaluation</h3>
-<div id="chris-fry-data-science-manager-google-casey-lichtendahl-visiting-researcher-google" class="section level4">
-<h4>Chris Fry (Data Science Manager Google), Casey Lichtendahl (Visiting researcher google)</h4>
+<div id="consolidated-framework-for-forecast-generation-and-evaluation" class="section level2">
+<h2>Consolidated framework for forecast generation and evaluation</h2>
+<div id="chris-fry-data-science-manager-google-casey-lichtendahl-visiting-researcher-google" class="section level3">
+<h3>Chris Fry (Data Science Manager Google), Casey Lichtendahl (Visiting researcher google)</h3>
 <ul>
 <li>Automated many steps of design generation and monitoring of time series forecasting</li>
 <li>use nested cross validation for generating and evaluating</li>
@@ -1063,12 +1063,12 @@ summary {
 </ul>
 <p>Tend to set capacity at 95 percentile.</p>
 <p>Have lots of time series arranged in a hierarchy. e.g. Fleet &gt; search, cloud, youtube &gt; region &gt; zone.</p>
-<div id="nested-cross-validation" class="section level5">
-<h5>Nested cross validation</h5>
+<div id="nested-cross-validation" class="section level4">
+<h4>Nested cross validation</h4>
 <p>To evaluate, they use a sequence of backtests. To generate prediction intervals, use empirical error distributions from another sequence of backtests inside each training set</p>
 </div>
-<div id="parallelization" class="section level5">
-<h5>Parallelization</h5>
+<div id="parallelization" class="section level4">
+<h4>Parallelization</h4>
 <p>Thousands of time series, lots of backtests, lots of challenger models. Can parallelize over none, some, or all of these dimensions.</p>
 <p>Use flume and beam. Similar to google’s dataflow plus apache beam.</p>
 <p>Inner loop - Generate point forecasts (Series, backtests, models) - Reconcile point forecasts and record forecasting errors - Fit cones to empirical error distributions</p>
@@ -1076,12 +1076,12 @@ summary {
 <p>Reconcile with MinT or similar. Use in-sample fitted values to calculate projection matrix. Would be an issue for complex ML models… but issue for another time.</p>
 <p>From each of your backtests, you get a bunch of 1-step, 2-step etc forecasts.. You can use prediction errors on the validation set to get empirical distributions for forecasts errors at each step.</p>
 </div>
-<div id="detailed-talks" class="section level5">
-<h5>detailed talks</h5>
+<div id="detailed-talks" class="section level4">
+<h4>detailed talks</h4>
 <p>Haoyun Wu - ml models Weijie Shen - reconciliation Kashif Yousuf… - empirical distributions for cones Sercan Arik - temporal fusion ….</p>
 </div>
-<div id="evaluation-metrics" class="section level5">
-<h5>Evaluation metrics</h5>
+<div id="evaluation-metrics" class="section level4">
+<h4>Evaluation metrics</h4>
 <ul>
 <li>Accuracy (MSE)</li>
 <li>Bias (ME)</li>
@@ -1098,8 +1098,8 @@ summary {
 <p>Tensorflow probability - bayesian structural time series tensorflow - deep learning models temporal fusion transformers kubeflow for deploying and managing ML time series forecasting pipelines</p>
 <p>BigQueryARIMA - forecast directly in SQL. AutoML tables - auto ml for structured data demand AI - retail forecasting tool</p>
 </div>
-<div id="qa-1" class="section level5">
-<h5>Q+A</h5>
+<div id="qa-1" class="section level4">
+<h4>Q+A</h4>
 <ul>
 <li>Why use empirical PI instead of using pinball loss. They find that using pinball loss doesn’t give very good distributions.</li>
 </ul>
@@ -1109,30 +1109,34 @@ summary {
 </div>
 <div id="session-forecast-evaluation-iii" class="section level1">
 <h1>Session: Forecast evaluation III</h1>
-<div id="learnings-from-m5-competition-for-intermittent-forecasting" class="section level3">
-<h3>Learnings from M5 competition for intermittent forecasting</h3>
-<div id="p.k.s-prakash" class="section level4">
-<h4>P.K.S Prakash</h4>
+<div id="learnings-from-m5-competition-for-intermittent-forecasting" class="section level2">
+<h2>Learnings from M5 competition for intermittent forecasting</h2>
+<div id="p.k.s-prakash" class="section level3">
+<h3>P.K.S Prakash</h3>
 </div>
-<div id="abstract-18" class="section level4">
-<h4>Abstract:</h4>
-<p>The main purpose of this abstract is to outline the key learnings from competing in the recently completed 5th edition of M-competition. The authors method was ranked among top 1% of the 5000+ competitors in M5 competition. The key learnings includes: (1) Simple methods outperform complex methods even in machine learning, (2) More data may not necessarily help improving accuracy of forecasting (3) Temporal aggregation for intermittent series did not perform well, on the contrary (4) ensembling diverse models worked well (5) Forecasting is not a regression problem, it can be formulated as a classification problem (6) Intermittency leads to under or overestimation across different levels of the hierarchical forecast (7) Forecasters past success in competitions is not a good predictor of future success (8) Easy to overfit time series forecasting problems (9) Handling uncertainty in making point predictions is crucial. When uncertain combine diverse models and avoid cognitive bias. In this presentation, the authors will demonstrate the above learning using empirical data from M5 competition. #### Notes: All the top results were LGBM and pretty simple. Used magic multipliers to counter over-forecasting/under-forecasting but best multiplier for validation was 1.06 and best for test for 0.96 so no consistent bias in either direction. And if you can’t tell which it is it’s all blind luck isn’t it… an unsatisfying explanation.</p>
+<div id="abstract-18" class="section level3">
+<h3>Abstract:</h3>
+<p>The main purpose of this abstract is to outline the key learnings from competing in the recently completed 5th edition of M-competition. The authors method was ranked among top 1% of the 5000+ competitors in M5 competition. The key learnings includes: (1) Simple methods outperform complex methods even in machine learning, (2) More data may not necessarily help improving accuracy of forecasting (3) Temporal aggregation for intermittent series did not perform well, on the contrary (4) ensembling diverse models worked well (5) Forecasting is not a regression problem, it can be formulated as a classification problem (6) Intermittency leads to under or overestimation across different levels of the hierarchical forecast (7) Forecasters past success in competitions is not a good predictor of future success (8) Easy to overfit time series forecasting problems (9) Handling uncertainty in making point predictions is crucial. When uncertain combine diverse models and avoid cognitive bias. In this presentation, the authors will demonstrate the above learning using empirical data from M5 competition.</p>
+</div>
+<div id="notes-20" class="section level3">
+<h3>Notes:</h3>
+<p>All the top results were LGBM and pretty simple. Used magic multipliers to counter over-forecasting/under-forecasting but best multiplier for validation was 1.06 and best for test for 0.96 so no consistent bias in either direction. And if you can’t tell which it is it’s all blind luck isn’t it… an unsatisfying explanation.</p>
 </div>
 </div>
 </div>
 <div id="session-exponential-smoothing" class="section level1">
 <h1>Session: Exponential smoothing</h1>
-<div id="seasonal-vector-exponential-smoothing-model-taxonomy-using-cross-sectional-information" class="section level3">
-<h3>Seasonal vector exponential smoothing model taxonomy using cross-sectional information</h3>
-<div id="huijing-chen" class="section level4">
-<h4>Huijing Chen</h4>
+<div id="seasonal-vector-exponential-smoothing-model-taxonomy-using-cross-sectional-information" class="section level2">
+<h2>Seasonal vector exponential smoothing model taxonomy using cross-sectional information</h2>
+<div id="huijing-chen" class="section level3">
+<h3>Huijing Chen</h3>
 </div>
-<div id="abstract-19" class="section level4">
-<h4>Abstract:</h4>
+<div id="abstract-19" class="section level3">
+<h3>Abstract:</h3>
 <p>In the context of short-term demand forecasting, businesses are often required to forecast the demand of seasonal products, based on very few complete seasonal cycles of data. This makes the forecasting task difficult, but one possible solution is to make use of the readily available cross-sectional information from a homogeneous group. For example, a product family may contain essentially the same product with many variations such as size or colour. It is reasonable to assume that seasonality is common within the family and can thus be estimated using the cross-sectional information. In this research, we propose a framework based on vector exponential smoothing (VES), and provide a conceptual contribution by devising a taxonomy of seasonal VES models, bringing together the factors of seasonal components, smoothing parameters and initial seasonal indices. Experiments with artificially generated data and empirical findings will be discussed to assess the performance of the methods derived from this taxonomy, and provide insights on the impact on forecasting from improved efficiency on estimation of components.</p>
 </div>
-<div id="notes-20" class="section level4">
-<h4>Notes:</h4>
+<div id="notes-21" class="section level3">
+<h3>Notes:</h3>
 <p>Difficult to estimate seasonality with short data history eg retail. But might have multiple products with similar seasonal patterns. So could potentially exploit this seasonality.</p>
 <p>Vector exponential smoothing (VES)</p>
 <p>not really sure what the model is</p>
