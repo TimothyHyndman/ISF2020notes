@@ -463,6 +463,15 @@ summary {
 <li><a href="#session-exponential-smoothing">Session: Exponential smoothing</a><ul>
 <li><a href="#seasonal-vector-exponential-smoothing-model-taxonomy-using-cross-sectional-information">Seasonal vector exponential smoothing model taxonomy using cross-sectional information</a></li>
 </ul></li>
+<li><a href="#keynote-m5-competition">Keynote: M5 Competition</a><ul>
+<li><a href="#the-m5-competition-in-progress">The M5 competition in progress</a></li>
+</ul></li>
+<li><a href="#keynote-henrik-madsen">Keynote: Henrik Madsen</a><ul>
+<li><a href="#forecasting-for-the-green-transition">Forecasting for the Green Transition</a></li>
+</ul></li>
+<li><a href="#keynote-thordis-l.-thorarinsdottir">Keynote: Thordis L. Thorarinsdottir</a><ul>
+<li><a href="#from-weather-to-climate-predictions">From weather to climate predictions</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -1140,6 +1149,97 @@ summary {
 <p>Difficult to estimate seasonality with short data history eg retail. But might have multiple products with similar seasonal patterns. So could potentially exploit this seasonality.</p>
 <p>Vector exponential smoothing (VES)</p>
 <p>not really sure what the model is</p>
+</div>
+</div>
+</div>
+<div id="keynote-m5-competition" class="section level1">
+<h1>Keynote: M5 Competition</h1>
+<div id="the-m5-competition-in-progress" class="section level2">
+<h2>The M5 competition in progress</h2>
+<div id="spyros-makridakis-evangelos-spiliotis" class="section level3">
+<h3>Spyros Makridakis, Evangelos Spiliotis</h3>
+</div>
+<div id="notes-22" class="section level3">
+<h3>Notes:</h3>
+<p>History of M competitions</p>
+<ol start="0" style="list-style-type: decimal">
+<li>A paper comparing over a number of time series (not a competition)</li>
+<li>Simple methods perform better</li>
+<li>Simple methods perform better and judgment doesn’t improve forecasts</li>
+<li>Some new accurate methods, NNs and ML methods don’t improve over statistical methods</li>
+<li>Hybrid ML + stats methods do best. Pure ML doesn’t do great. Evaluate uncertainty</li>
+</ol>
+<p>winners accuracy</p>
+<ol style="list-style-type: decimal">
+<li>Equal weighted combination of various LGBM models (both recursive and non-recursive). Produced forecasts for the product-store series, store-category, and store-department. Also considered robustness of method (lots of validation).</li>
+<li>Equal weighted combination of various lgbm… 3 ? 4 ? 5 ?</li>
+</ol>
+<p>winners uncertainty</p>
+<ol style="list-style-type: decimal">
+<li>Inidivdual LGBM trained per quantile and aggregation level (lowest level has separate modelf or each category)</li>
+<li>Hybrid with LGBM, simple time series forecasting methods, stats methods that estimates the distribution and applies corrections to it using external point forecasts. Distributions estimated using histogram technique. 3 ? 4 ? 5 ?</li>
+</ol>
+<p>Key findings</p>
+<ul>
+<li>Superiority of relatively simple ML, esp LightGBM</li>
+<li>Value of combining different ML methods trained on different sets of data</li>
+<li>Potential of NN methods, used in 3 of top 5 uncertainty winners to estimate uncertainty distribution</li>
+<li>Value of cross-learning. All winners considered information originating from different aggregation levels and series to predict the product-store.</li>
+<li>Exogenous variables important</li>
+<li>Accurate identification of median important for estimating remaining forecasts</li>
+<li>Value added by effective CV strategies</li>
+<li>?</li>
+<li>?</li>
+</ul>
+<p>Implications</p>
+<ul>
+<li>Fundamental change from statistical methods to simple ML ones</li>
+<li>Shift from technical experience in running the forecasting methods and expertise to fine-tuning the ML algorithm to achieve more accurate results</li>
+<li>Improvements in accuracy will come from:
+<ul>
+<li>more and more reliable data</li>
+<li>more effective adjustments to the statistical forecasts</li>
+<li>breaking the black box of ML methods to better understand the factors affecting forecasting accuracy</li>
+</ul></li>
+<li>Uncertainty and risk
+<ul>
+<li>time to stop believing that ‘uncertainty is too wide’</li>
+<li>in addition to ‘normal’, fat-tailed uncertainty must be also considered</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="keynote-henrik-madsen" class="section level1">
+<h1>Keynote: Henrik Madsen</h1>
+<div id="forecasting-for-the-green-transition" class="section level2">
+<h2>Forecasting for the Green Transition</h2>
+<div id="notes-23" class="section level3">
+<h3>Notes:</h3>
+<p>Focus on load, wind, solar</p>
+<p>I struggled following this talk - on a very high level there was some stuff about forecasting wind electicity output as a function of weather forecasts.</p>
+<p>Uses temporal hierarchical reconciliation. Special attention paid to auto and cross correlations + covariances and all that.</p>
+</div>
+</div>
+</div>
+<div id="keynote-thordis-l.-thorarinsdottir" class="section level1">
+<h1>Keynote: Thordis L. Thorarinsdottir</h1>
+<div id="from-weather-to-climate-predictions" class="section level2">
+<h2>From weather to climate predictions</h2>
+<div id="notes-24" class="section level3">
+<h3>Notes:</h3>
+<ul>
+<li>Weather 0-10days</li>
+<li>Climate projections 10-100years (Based on different emissions scenarios)</li>
+<li>Climate predictions the in-between bit (e.g. rain season predicted to start early vs late)</li>
+</ul>
+<p>Time resolution of prediction changes as we move into the future. Eg start with hourly predictions for the next few days, then 6 hourly , weekly, monthly, yearly, and finally decades for the longest term models.</p>
+<p>How to evaluate climate predictions/projections?</p>
+<ul>
+<li>Compare distributions. Use integrated quadratic distance (IQD) to measure difference between distributions.</li>
+<li>consider multiple “truths”</li>
+<li>work with anomolies</li>
+</ul>
 </div>
 </div>
 </div>
